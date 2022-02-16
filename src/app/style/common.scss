@@ -11,7 +11,7 @@ body {
 }
 
 body,div,p,a,span {
-    font-family: $montserrat, Helvetica, sans-serif;
+    font-family: $roboto, Helvetica, sans-serif;
     font-size: 24px;
     font-weight: 300;
     color: $light;
@@ -31,6 +31,7 @@ div {
 
 h1,h2,h3,h4 {
     margin: 0;
+    font-family: $roboto, Helvetica, sans-serif;
 }
 
 h1,.h1 {
@@ -160,7 +161,7 @@ button {
     }
 
     &:disabled {
-        background: $lignt;
+        background: $light;
     }
 }
 

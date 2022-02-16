@@ -1,0 +1,91 @@
+@import "../style/common.scss";
+
+.content {
+	display: flex;
+}
+
+.main {
+	flex-grow: 1;
+}
+
+.header {
+    display: flex;
+    margin-top: 32px;
+	margin-left: 64px;
+	padding-left: 64px;
+	padding-right: 64px;
+	justify-content: space-between;
+
+	&-logo {
+	    font-size: 30px;
+	    line-height: 35px;
+	    font-weight: bold;
+	    color: $green;
+	}
+
+	&-right {
+	    padding-top: 5px;
+	    float: right;
+	}
+
+	&-link {
+	    font-size: 14px;
+	    line-height: 16px;
+	    color: $gray;
+
+	    span {
+	        vertical-align: 20%;
+	        font-size: 14px;
+	        line-height: 16px;
+	        color: $gray;
+	    }
+
+	    &__img {
+	        width: 15px;
+	        margin-right: 8px;
+	    }
+	}
+
+	&-burger {
+        position: absolute;
+        width: 64px;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        padding-top: 32px;
+        padding-bottom: 31px;
+        background-color: #151B1F;
+        text-align: center;
+	}
+
+	&__btn {
+	    position: absolute;
+	    left: 16px;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        background-image: url(/assets/images/icons/menu_btn.svg);
+        background-size: contain;
+        background-color: transparent;
+        border: none; 
+    } 
+
+    &__lang {
+        position: absolute;
+        left: 20px;
+        bottom: 31px;
+        font-size: 13px;
+	    line-height: 15px;
+	    font-weight: bold;
+	    color: $green;
+    }
+}
+
+
+.slider {
+	flex-basis: 688px;
+
+	@media (max-width: $smallpc_width) {
+	    flex-basis: 410px;
+	}
+}
