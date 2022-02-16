@@ -1,3 +1,169 @@
 @import "./styles/partial/fonts.scss";
 @import "./styles/partial/variables.scss";
 
+html,body,h1,h2,h3 {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: $white;
+}
+
+body,div,p,a,span {
+    font-family: $montserrat, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: $light;
+
+    @media(max-width: $smallpc_width) {
+        font-size: 22px;
+    }
+
+    @media(max-width: $container_width) {
+        
+    }
+} 
+
+div {
+    box-sizing: border-box;
+} 
+
+h1,h2,h3,h4 {
+    margin: 0;
+}
+
+h1,.h1 {
+    font-size: 70px;
+	line-height: 66px;
+	font-weight: 700;
+	color: $base;
+}
+
+h2,.h2 {
+    font-size: 70px;
+	line-height: 66px;
+	font-weight: 700;
+	color: $green;
+}
+
+h3,.h3 {
+    font-size: 32px;
+	line-height: 37px;
+	font-weight: 500;
+	color: $white;
+}
+
+h4,.h4 {
+     
+}
+
+p {
+    margin: 0;
+}
+
+blockquote, .blockquote {
+
+}
+
+img {
+    max-width: 100%;
+}
+
+.strong {
+    
+}
+
+.title {
+    
+}
+
+.text {
+    font-style: italic;
+}
+
+
+.white {
+    color: $white !important;
+}
+
+.black {
+    color: $black !important;
+}
+
+.section {
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.container {
+    width: $container_width;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: $mobile_width) {
+        padding-left: 10px;
+        padding-right: 10px;
+    }  
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+* {
+    outline: none;
+    &:focus {
+        outline: none;
+    }
+}
+
+a {
+   cursor: pointer;
+   text-decoration: none;
+
+   &:focus {
+    outline: none;
+   }
+}
+
+button {
+   cursor: pointer;
+
+   &:focus {
+       outline: none;
+   }
+}
+
+.btn {
+    background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
+    background-blend-mode: darken;
+    box-shadow: 0px 2px 4px rgba(90, 97, 105, 0.12);
+    border-radius: 8px;
+
+    &:hover {
+        background: linear-gradient(90deg, #0B934A 2.61%, #026E47 112.6%);
+    }
+
+    &:focus {
+        background: linear-gradient(90deg, #076432 2.61%, #013C27 112.6%);
+    }
+
+    &:visited {
+        background: linear-gradient(90deg, #0B934A 2.61%, #026E47 112.6%);
+    }
+
+    &:disabled {
+        background: $lignt;
+    }
+}
+
+.section {
+    
+}
