@@ -61,6 +61,83 @@
         border: none; 
     } 
 
+    &-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(21, 27, 31, 0.81);
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        transition: $transition_all;
+
+        &__bg {
+            position: absolute;
+            width: calc(100% - 688px);
+            height: 100%;
+            background: #111518;
+            z-index: 2;
+        }
+
+        &__close {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            top: 33px;
+            left: 16px;
+            padding: 0;
+            background-image: url(/assets/images/icons/close.svg);
+            background-color: transparent;
+            border: none;
+            z-index: 3;
+        }
+    }
+
+    &-menu {
+        position: absolute;
+        top: 308px;
+        left: 128px;
+        text-align: left;
+        z-index: 3;
+
+        &-list {
+            margin-bottom: 38px;
+        }
+
+        &__item {
+            margin-bottom: 12px;
+        }
+
+        &__link {
+            font-size: 32px;
+            line-height: 37px;
+            font-weight: 500;
+            color: $white;
+            text-transform: uppercase;
+        }
+    }
+
+    &-socio {
+        display: flex;
+        
+        &__item {
+
+            &+.header-socio__item {
+                margin-left: 24px;
+            }
+        }
+
+        &__link {
+            img {
+                width: 32px;
+                height: 32px;
+                object-fit: contain;
+            }
+        }
+    }
+
     &__lang {
         position: absolute;
         left: 20px;
@@ -73,8 +150,6 @@
 }
 
 .main {
-	padding-left: 64px;
-	flex-grow: 1;
 
 	&-content {
 	    margin-top: 160px;
@@ -95,7 +170,7 @@
 }
 
 .footer {
-    pagging-top: 36px;
+    padding-top: 36px;
     padding-bottom: 36px;
     font-size: 13px;
     line-height: 15px;

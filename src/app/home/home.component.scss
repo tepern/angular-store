@@ -4,10 +4,17 @@
 	display: flex;
 }
 
+.main {
+	padding-left: 64px;
+	flex-grow: 1;
+}
+
 .slider {
+    width: 688px;
 	flex-basis: 688px;
 
 	@media (max-width: $smallpc_width) {
+	    width: 410px;
 	    flex-basis: 410px;
 	}
 }
