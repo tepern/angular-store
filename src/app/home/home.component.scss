@@ -6,7 +6,7 @@
 
 .main {
 	padding-left: 64px;
-	flex-grow: 1;
+	flex-basis: calc(100% - 688px);
 }
 
 .slider {

@@ -1,23 +1,41 @@
 <swiper [slidesPerView]="1" [navigation]="true" [pagination]="{ clickable: true }"
 >
-  <ng-template swiperSlide>
-  	<div>
-  		<img src="assets/images/1.png" alt="">
-  	</div>
-  </ng-template>
-  <ng-template swiperSlide>
-  	<div>
-  		<img src="assets/images/2.png" alt="">
-  	</div>
-  </ng-template>
-  <ng-template swiperSlide>
-  	<div>
-  		<img src="assets/images/3.png" alt="">
-  	</div>
-  </ng-template>
-  <ng-template swiperSlide>
-  	<div>
-  		<img src="assets/images/4.png" alt="">
-  	</div>
-  </ng-template>
+    <ng-template swiperSlide>
+  	    <div class="slider-content" style="background-image: url(/assets/images/1.png);">
+	  		<div class="slider__title">Бесплатная парковка</div>
+	  		<div class="slider__text">
+	  			Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.
+	  		</div>
+	  		<div class="slider-button">
+	  			<button class="slider__btn slider__btn_green btn">Подробнее</button>
+	  		</div>
+  	    </div>
+    </ng-template>
+    <ng-template swiperSlide>
+	  	<div class="slider-content" style="background-image: url(/assets/images/2.png);">
+	  		<div class="slider__title">Страховка</div>
+	  		<div class="slider__text">Полная страховка страховка автомобиля</div>
+	  		<div class="slider-button">
+	  			<button class="slider__btn slider__btn_cyan btn">Подробнее</button>
+	  		</div>
+	  	</div>
+    </ng-template>
+    <ng-template swiperSlide>
+	  	<div class="slider-content" style="background-image: url(/assets/images/3.png);">
+	  		<div class="slider__title">Бензин</div>
+	  		<div class="slider__text">Полный бак на любой заправке города за наш счёт</div>
+	  		<div class="slider-button">
+	  			<button class="slider__btn slider__btn_pink btn">Подробнее</button>
+	  		</div>
+	  	</div>
+    </ng-template>
+    <ng-template swiperSlide>
+  	    <div class="slider-content" style="background-image: url(/assets/images/4.png);">
+	  		<div class="slider__title">Обслуживание</div>
+	  		<div class="slider__text">Автомобиль проходит еженедельное ТО</div>
+	  		<div class="slider-button">
+	  			<button class="slider__btn slider__btn_purple btn">Подробнее</button>
+	  		</div>
+  	    </div>
+    </ng-template>
 </swiper>
