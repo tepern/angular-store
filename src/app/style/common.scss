@@ -35,6 +35,16 @@ h1,.h1 {
 	line-height: 66px;
 	font-weight: 700;
 	color: $base;
+
+    @media (max-width: $tablet_width) {
+        margin-bottom: 0;
+    }
+
+    @media (max-width: $big-mobile_width) {
+        margin-bottom: 6px;
+        font-size: 32px;
+        line-height: 32px;
+    }
 }
 
 h2,.h2 {
@@ -43,6 +53,12 @@ h2,.h2 {
 	line-height: 66px;
 	font-weight: 700;
 	color: $green;
+
+    @media (max-width: $big-mobile_width) {
+        margin-bottom: 16px;
+        font-size: 32px;
+        line-height: 32px;
+    }
 }
 
 h3,.h3 {
@@ -76,6 +92,11 @@ img {
     font-size: 26px;
     line-height: 30px;
     color: $gray;
+
+    @media (max-width: $big-mobile_width) {
+        font-size: 18px;
+        line-height: 21px;
+    }
 }
 
 .text {
@@ -101,12 +122,17 @@ img {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding-left: 64px;
+    padding-right: 64px;
 
-    @media (max-width: $mobile_width) {
-        padding-left: 10px;
-        padding-right: 10px;
+    @media (max-width: $smallpc_width) {
+        padding-left: 32px;
+        padding-right: 32px;
+    } 
+
+    @media (max-width: $big-mobile_width) {
+        padding-left: 16px;
+        padding-right: 16px;
     }  
 }
 

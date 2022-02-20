@@ -18,6 +18,10 @@
 				margin: 0;
 				transition: $transition_all;
 
+				@media (max-width: $smallpc_width) {
+	                width: 32px;
+	            }
+
 				&::after {
 				    font-size: 18px;
                     font-weight: 600;
@@ -37,6 +41,10 @@
 				height: 100%;
 				margin: 0;
 				transition: $transition_all;
+
+				@media (max-width: $smallpc_width) {
+	                width: 32px;
+	            }
 
 				&::after {
 				    font-size: 18px;
@@ -78,6 +86,13 @@
 	    padding-left: 96px;
 	    padding-right: 96px;
 	    padding-bottom: 32px;
+
+        @media (max-width: $smallpc_width) {
+            padding-top: 277px;
+            padding-left: 64px;
+	        padding-right: 64px;
+	        background-position: center;
+        }
 	}
 
 	&__title {
@@ -85,6 +100,11 @@
         font-size: 40px;
         line-height: 47px;
         font-weight: 500;
+
+        @media (max-width: $smallpc_width) {
+            font-size: 32px;
+            line-height: 37px;
+        }
 	}
 
 	&__text {
@@ -92,6 +112,10 @@
 	    font-size: 24px;
 	    line-height: 22px;
 	    color: $light;
+
+	    @media (max-width: $smallpc_width) {
+            font-size: 22px;
+        }
 	}
 
 	&__btn {

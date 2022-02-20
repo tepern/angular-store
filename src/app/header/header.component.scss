@@ -2,10 +2,18 @@
 
 :host {
     display: flex;
+    max-width: 100%;
     margin-top: 32px;
     padding-left: 64px;
     padding-right: 64px;
     justify-content: space-between;
+
+    @media (max-width: $big-mobile_width) {
+        margin-top: 16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        flex-wrap: wrap;
+    }
 } 
 
 .header {
@@ -15,11 +23,23 @@
 	    line-height: 35px;
 	    font-weight: bold;
 	    color: $green;
+
+        @media (max-width: $big-mobile_width) {
+            margin-bottom: 3px;
+            text-align: right;
+            flex-basis: 100%;
+        }
 	}
 
 	&-right {
 	    padding-top: 5px;
 	    float: right;
+
+        @media (max-width: $big-mobile_width) {
+            width: 100%;
+            flex-basis: 100%;
+            text-align: right;
+        }
 	}
 
 	&-link {
@@ -50,6 +70,19 @@
         padding-bottom: 31px;
         background-color: #151B1F;
         text-align: center;
+
+        @media (max-width: $tablet_width) {
+            width: 86px;
+        }
+
+        @media (max-width: $big-mobile_width) {
+            width: 35px;
+            height: 34px;
+            top: 16px;
+            left: 16px;
+            padding: 0;
+            background: transparent;
+        }
 	}
 
 	&__btn {
@@ -62,6 +95,19 @@
         background-size: contain;
         background-color: transparent;
         border: none; 
+
+        @media (max-width: $big-mobile_width) {
+            position: initial;
+            display: block;
+            width: 34px;
+            height: 33px;
+            margin-right: 62px;
+            padding: 0;
+            background-image: url(/assets/images/icons/menu_btn_mob.svg);
+            background-size: contain;
+            background-color: transparent;
+            border: none;
+        }
     } 
 
     &-nav {
@@ -87,6 +133,14 @@
             height: 100%;
             background: #111518;
             z-index: 20;
+
+            @media (max-width: $smallpc_width) {
+                width: calc(100% - 410px);
+            }
+
+            @media (max-width: $tablet_width) {
+                width: 100%;
+            }
         }
 
         &__close {
@@ -100,6 +154,11 @@
             background-color: transparent;
             border: none;
             z-index: 40;
+
+             @media (max-width: $big-mobile_width) {
+                top: 20px;
+                left: 20px;
+            }
         }
     }
 
@@ -107,8 +166,14 @@
         position: absolute;
         top: 308px;
         left: 128px;
+        right: 20px;
         text-align: left;
         z-index: 30;
+
+        @media (max-width: $big-mobile_width) {
+            top: 80px;
+            left: 28px;
+        }
 
         &-list {
             margin-bottom: 38px;
@@ -124,6 +189,11 @@
             font-weight: 500;
             color: $white;
             text-transform: uppercase;
+
+            @media (max-width: $big-mobile_width) {
+                font-size: 22px;
+                line-height: 25px;
+            }
         }
     }
 
@@ -166,5 +236,31 @@
 	    line-height: 15px;
 	    font-weight: bold;
 	    color: $green;
+
+        @media (max-width: $big-mobile_width) {
+            display: none;
+        }
+
+        &_mobile {
+
+            &.header__lang {
+                display: none;
+
+                @media (max-width: $big-mobile_width) {
+                    position: absolute;
+                    display: block;
+                    left: 28px;
+                    bottom: 28px;
+                    z-index: 20;
+                }
+
+                @media (max-height: 374px) {
+                    left: auto;
+                    right: 28px;
+                    z-index: 30;
+                }
+            }
+
+        }
     }
 }
