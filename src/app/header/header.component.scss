@@ -91,7 +91,7 @@
         width: 32px;
         height: 32px;
         padding: 0;
-        background-image: url(/assets/images/icons/menu_btn.svg);
+        background-image: url(~src/assets/images/icons/menu_btn.svg);
         background-size: contain;
         background-color: transparent;
         border: none; 
@@ -103,7 +103,7 @@
             height: 33px;
             margin-right: 62px;
             padding: 0;
-            background-image: url(/assets/images/icons/menu_btn_mob.svg);
+            background-image: url(~src/assets/images/icons/menu_btn_mob.svg);
             background-size: contain;
             background-color: transparent;
             border: none;
@@ -150,7 +150,7 @@
             top: 33px;
             left: 16px;
             padding: 0;
-            background-image: url(/assets/images/icons/close.svg);
+            background-image: url('~src/assets/images/icons/close.svg');
             background-color: transparent;
             border: none;
             z-index: 40;
