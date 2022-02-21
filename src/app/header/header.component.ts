@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { menu } from '../menu';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ export class HeaderComponent implements OnInit {
   }
 
   visibility: boolean = false;
+  readonly menu = menu;
 
     // переключаем переменную
     toggle(){

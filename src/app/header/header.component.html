@@ -5,18 +5,9 @@
 			<button class="header-nav__close" (click)="toggle()"></button>
 			<div class="header-nav__bg"></div>
 			<div class="header-menu">
-				<ul class="header-menu-list">
-					<li class="header-menu__item">
-						<a class="header-menu__link">Парковка</a>
-					</li>
-					<li class="header-menu__item">
-						<a class="header-menu__link">Страховка</a>
-					</li>
-					<li class="header-menu__item">
-						<a class="header-menu__link">Бензин</a>
-					</li>
-					<li class="header-menu__item">
-						<a class="header-menu__link">Обслуживание</a>
+				<ul class="header-menu-list" *ngIf="menu">
+					<li class="header-menu__item" *ngFor="let item of menu">
+						<a class="header-menu__link">{{ item }}</a>
 					</li>
 				</ul>
 				<ul class="header-socio">
