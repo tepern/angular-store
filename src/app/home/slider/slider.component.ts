@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { SwiperComponent } from "swiper/angular";
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 
@@ -10,11 +10,6 @@ SwiperCore.use([Navigation, Pagination]);
   styleUrls: ['./slider.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class SliderComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class SliderComponent {
 
 }
