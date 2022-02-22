@@ -16,8 +16,8 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggle(){
-    this.visibility=!this.visibility;
+  toggle() {
+    this.visibility = !this.visibility;
   }
 
 }
