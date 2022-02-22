@@ -10,13 +10,9 @@ export class HeaderComponent {
 
   visibility: boolean = false;
 
-    // переключаем переменную
-    toggle() {
-        this.visibility = !this.visibility;
-    }
-
-    close(visibility: any) {
-        this.visibility = !this.visibility;
-    }
+  // переключаем переменную
+  toggle() {
+    this.visibility = !this.visibility;
+  }
 
 }

@@ -11,11 +11,9 @@ export class MenuComponent {
   @Output() onClick = new EventEmitter<boolean>();
     
   readonly menu = menu;
-  visibility: boolean = true;
 
   toggle() {
-    this.visibility = !this.visibility;
-    this.onClick.emit(this.visibility);
+    this.onClick.emit();
   }
 
 }
