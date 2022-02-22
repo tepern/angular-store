@@ -1,4 +1,4 @@
-import { Input, Component, OnInit } from '@angular/core';
+import { Input, Component, EventEmitter, Output } from '@angular/core';
 import { menu } from '../../menu';
 
 @Component({
@@ -6,18 +6,16 @@ import { menu } from '../../menu';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
-  @Input() visibility: boolean = false;
+  @Output() onClick = new EventEmitter<boolean>();
+    
   readonly menu = menu;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  visibility: boolean = true;
 
   toggle() {
     this.visibility = !this.visibility;
+    this.onClick.emit(this.visibility);
   }
 
 }

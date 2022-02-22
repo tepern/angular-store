@@ -1,6 +1,6 @@
 <div class="header-burger">
 	<button class="header__btn" (click)="toggle()"></button>
-	
+	<app-menu [ngClass]="{invisible: visibility}" (onClick)="close($event)"></app-menu>
 	<a class="header__lang">Eng</a>
 </div>
 <a class="header-logo">Need for drive</a>

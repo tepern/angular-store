@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuComponent } from './menu/menu.component';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,10 @@ export class HeaderComponent {
 
     // переключаем переменную
     toggle() {
+        this.visibility = !this.visibility;
+    }
+
+    close(visibility: any) {
         this.visibility = !this.visibility;
     }
 
