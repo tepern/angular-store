@@ -1,5 +1,5 @@
-import { Input, Component, EventEmitter, Output } from '@angular/core';
-import { menu } from '../../menu';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { menu } from './menu';
 
 @Component({
   selector: 'app-menu',
@@ -11,11 +11,8 @@ export class MenuComponent {
   @Output() onClick = new EventEmitter<boolean>();
     
   readonly menu = menu;
-  visibility: boolean = true;
 
   toggle() {
-    this.visibility = !this.visibility;
-    this.onClick.emit(this.visibility);
+    this.onClick.emit();
   }
-
 }
