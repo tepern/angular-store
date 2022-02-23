@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { SwiperComponent } from "swiper/angular";
 import SwiperCore, { Navigation, Pagination } from 'swiper';
-import { slider } from '../../slider';
+import { slider } from './slider';
 
 SwiperCore.use([Navigation, Pagination]);
 

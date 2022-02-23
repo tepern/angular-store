@@ -1,112 +1,112 @@
 @import "../style/common.scss";
 
 :host {
-    display: flex;
-    max-width: 100%;
-    margin-top: 32px;
-    padding-left: 64px;
-    padding-right: 64px;
-    justify-content: space-between;
+  display: flex;
+  max-width: 100%;
+  margin-top: 32px;
+  padding-left: 64px;
+  padding-right: 64px;
+  justify-content: space-between;
 
-    @media (max-width: $big-mobile_width) {
-        margin-top: 16px;
-        padding-left: 16px;
-        padding-right: 16px;
-        flex-wrap: wrap;
-    }
+  @media (max-width: $big-mobile_width) {
+    margin-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    flex-wrap: wrap;
+  }
 } 
 
 .header {
     
-	&-logo {
-	    font-size: 30px;
-	    line-height: 35px;
-	    font-weight: bold;
-	    color: $green;
+  &-logo {
+    font-size: 30px;
+    line-height: 35px;
+    font-weight: bold;
+    color: $green;
 
-        @media (max-width: $big-mobile_width) {
-            margin-bottom: 3px;
-            text-align: right;
-            flex-basis: 100%;
-        }
-	}
+    @media (max-width: $big-mobile_width) {
+      margin-bottom: 3px;
+      text-align: right;
+      flex-basis: 100%;
+    }
+  }
 
-	&-right {
-	    padding-top: 5px;
-	    float: right;
+  &-right {
+    padding-top: 5px;
+    float: right;
 
-        @media (max-width: $big-mobile_width) {
-            width: 100%;
-            flex-basis: 100%;
-            text-align: right;
-        }
-	}
+    @media (max-width: $big-mobile_width) {
+      width: 100%;
+      flex-basis: 100%;
+      text-align: right;
+    }
+  }
 
-	&-link {
-	    font-size: 14px;
-	    line-height: 16px;
-	    color: $gray;
+  &-link {
+    font-size: 14px;
+    line-height: 16px;
+    color: $gray;
 
-	    span {
-	        vertical-align: 20%;
-	        font-size: 14px;
-	        line-height: 16px;
-	        color: $gray;
-	    }
+    span {
+      vertical-align: 20%;
+      font-size: 14px;
+      line-height: 16px;
+      color: $gray;
+    }
 
-	    &__img {
-	        width: 15px;
-	        margin-right: 8px;
-	    }
-	}
+    &__img {
+      width: 15px;
+      margin-right: 8px;
+    }
+  }
 
-	&-burger {
-        position: fixed;
-        width: 64px;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        padding-top: 32px;
-        padding-bottom: 31px;
-        background-color: #151B1F;
-        text-align: center;
+  &-burger {
+    position: fixed;
+    width: 64px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding-top: 32px;
+    padding-bottom: 31px;
+    background-color: #151B1F;
+    text-align: center;
 
-        @media (max-width: $tablet_width) {
-            width: 86px;
-        }
+    @media (max-width: $tablet_width) {
+      width: 86px;
+    }
 
-        @media (max-width: $big-mobile_width) {
-            width: 35px;
-            height: 34px;
-            top: 16px;
-            left: 16px;
-            padding: 0;
-            background: transparent;
-        }
-	}
+    @media (max-width: $big-mobile_width) {
+      width: 35px;
+      height: 34px;
+      top: 16px;
+      left: 16px;
+      padding: 0;
+      background: transparent;
+    }
+  }
 
-	&__btn {
-	    position: absolute;
-	    left: 16px;
-        width: 32px;
-        height: 32px;
-        padding: 0;
-        background-image: url(~src/assets/images/icons/menu_btn.svg);
-        background-size: contain;
-        background-color: transparent;
-        border: none; 
+  &__btn {
+    position: absolute;
+    left: 16px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background-image: url(~src/assets/images/icons/menu_btn.svg);
+    background-size: contain;
+    background-color: transparent;
+    border: none; 
 
-        @media (max-width: $big-mobile_width) {
-            position: initial;
-            display: block;
-            width: 34px;
-            height: 33px;
-            margin-right: 62px;
-            padding: 0;
-            background-image: url(~src/assets/images/icons/menu_btn_mob.svg);
-            background-size: contain;
-            background-color: transparent;
-            border: none;
-        }
-    } 
+    @media (max-width: $big-mobile_width) {
+      position: initial;
+      display: block;
+      width: 34px;
+      height: 33px;
+      margin-right: 62px;
+      padding: 0;
+      background-image: url(~src/assets/images/icons/menu_btn_mob.svg);
+      background-size: contain;
+      background-color: transparent;
+      border: none;
+    }
+  } 
 }

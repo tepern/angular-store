@@ -14,5 +14,4 @@ export class HeaderComponent {
   toggle() {
     this.visibility = !this.visibility;
   }
-
 }

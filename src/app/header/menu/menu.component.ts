@@ -1,5 +1,5 @@
-import { Input, Component, EventEmitter, Output } from '@angular/core';
-import { menu } from '../../menu';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { menu } from './menu';
 
 @Component({
   selector: 'app-menu',
@@ -15,5 +15,4 @@ export class MenuComponent {
   toggle() {
     this.onClick.emit();
   }
-
 }
