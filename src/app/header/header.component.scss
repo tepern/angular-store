@@ -108,5 +108,40 @@
       background-color: transparent;
       border: none;
     }
+  }
+
+  &__lang {
+    position: absolute;
+    left: 20px;
+    bottom: 35px;
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: bold;
+    color: $green;
+
+    @media (max-width: $big-mobile_width) {
+        display: none;
+    }
+
+    &_mobile {
+
+      &.header__lang {
+        display: none;
+
+        @media (max-width: $big-mobile_width) {
+          position: absolute;
+          display: block;
+          left: 28px;
+          bottom: 28px;
+          z-index: 20;
+        }
+
+        @media (max-height: 374px) {
+          left: auto;
+          right: 28px;
+          z-index: 30;
+        }
+      }
+    }
   } 
 }
