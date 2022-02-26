@@ -1,0 +1,39 @@
+@import "../style/common.scss";
+
+.content {
+  display: flex;
+  max-width: 100%;
+  height: 100%;
+}
+
+.main {
+  padding-left: 64px;
+  flex-basis: calc(100% - 688px);
+
+  @media (max-width: $smallpc_width) {
+    flex-basis: calc(100% - 410px);
+  }
+
+  @media (max-width: $tablet_width) {
+    padding-left: 86px;
+    flex-basis: 100%;
+  }
+
+  @media (max-width: $big-mobile_width) {
+    padding-left: 0;
+  }
+}
+
+.slider {
+  width: 688px;
+  flex-basis: 688px;
+
+  @media (max-width: $smallpc_width) {
+    width: 410px;
+    flex-basis: 410px;
+  }
+
+  @media (max-width: $tablet_width) {
+    display: none;
+  }
+}

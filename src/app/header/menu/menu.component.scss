@@ -1,0 +1,160 @@
+@import "../../style/common.scss";
+
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(21, 27, 31, 0.81);
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+  transition: $transition_all;
+
+  &.invisible {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.header {
+    
+  &-nav {
+        
+    &__bg {
+      position: absolute;
+      width: calc(100% - 688px);
+      height: 100%;
+      background: #111518;
+      z-index: 20;
+
+      @media (max-width: $smallpc_width) {
+          width: calc(100% - 410px);
+      }
+
+      @media (max-width: $tablet_width) {
+          width: 100%;
+      }
+    }
+
+    &__close {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      top: 33px;
+      left: 16px;
+      padding: 0;
+      background-image: url('~src/assets/images/icons/close.svg');
+      background-color: transparent;
+      border: none;
+      z-index: 40;
+
+      @media (max-width: $big-mobile_width) {
+        top: 20px;
+        left: 20px;
+      }
+    }
+  }
+
+  &-menu {
+    position: absolute;
+    top: 308px;
+    left: 128px;
+    right: 20px;
+    text-align: left;
+    z-index: 30;
+
+    @media (max-width: $big-mobile_width) {
+      top: 80px;
+      left: 28px;
+    }
+
+    &-list {
+      margin-bottom: 38px;
+    }
+
+    &__item {
+      margin-bottom: 12px;
+    }
+
+    &__link {
+      font-size: 32px;
+      line-height: 37px;
+      font-weight: 500;
+      color: $white;
+      text-transform: uppercase;
+
+      @media (max-width: $big-mobile_width) {
+        font-size: 22px;
+        line-height: 25px;
+      }
+    }
+  }
+
+  &-socio {
+    display: flex;
+      
+    &__item {
+
+      &+.header-socio__item {
+        margin-left: 24px;
+      }
+    }
+
+    &__link {
+      transition: $transition_all;
+
+      svg {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        transition: $transition_all;
+      }
+
+      &:hover {
+
+        svg path {
+          fill-opacity: 1;
+          stroke-opacity: 0;
+          fill: $green;
+        }
+      }
+    }
+  }
+
+  &__lang {
+    position: absolute;
+    left: 20px;
+    bottom: 35px;
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: bold;
+    color: $green;
+
+    @media (max-width: $big-mobile_width) {
+        display: none;
+    }
+
+    &_mobile {
+
+      &.header__lang {
+        display: none;
+
+        @media (max-width: $big-mobile_width) {
+          position: absolute;
+          display: block;
+          left: 28px;
+          bottom: 28px;
+          z-index: 20;
+        }
+
+        @media (max-height: 374px) {
+          left: auto;
+          right: 28px;
+          z-index: 30;
+        }
+      }
+    }
+  }
+}

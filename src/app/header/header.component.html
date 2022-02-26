@@ -1,0 +1,12 @@
+<div class="header-burger">
+  <button class="header__btn" (click)="toggle()"></button>
+  <app-menu [ngClass]="{invisible: visibility}" (onClick)="toggle()"></app-menu>
+  <a class="header__lang">Eng</a>
+</div>
+<a class="header-logo">Need for drive</a>
+<div class="header-right">
+  <a class="header-link">
+    <img class="header-link__img" src="assets/images/icons/map.svg" alt="">
+    <span>Ульяновск</span>
+  </a>    
+</div>

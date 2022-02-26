@@ -1,0 +1,28 @@
+/* adaptive */
+$big-notebook_width: 1600px;
+$bigpc_width: 1440px;
+$smallpc_width: 1439px;
+$container-min_width: 1401px;
+$container_width: 1190px;
+$laptop_width: 1199px;
+$ipad_width: 1024px;
+$tablet_min_width: 992px;
+$tablet_width: 1023px;
+$big-mobile-min_width: 768px;
+$big-mobile_width: 767px;
+$s_mobile_width: 600px;
+$mobile_width: 450px;
+
+/* fonts */
+$roboto: Roboto;
+
+/* colors */
+$base: #121212;
+$green: #0EC261;
+$black: #000000;
+$white: #ffffff;
+$gray: #999999;
+$light: #EEEEEE;
+
+/*others*/
+$transition_all: all .3s ease-in-out;
