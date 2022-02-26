@@ -1,0 +1,73 @@
+@import "../style/common.scss";
+
+:host {
+  display: block;
+  padding-left: 64px;
+
+  @media (max-width: $big-mobile_width) {
+    padding-left: 0;
+  }
+}
+
+.header {
+  position: relative;
+}
+
+.container {
+  width: $container_width;
+}
+
+.order {
+  
+  &-nav {
+    margin-top: 32px;
+    padding-right: 16px;
+    border: 1px solid $light;
+
+    @media (max-width: $big-mobile_width) {
+      padding-left: 16px;
+    }
+
+    &-list {
+      display: flex;
+      margin: 0;
+
+      @media (max-width: $big-mobile_width) {
+        flex-wrap: wrap;
+      }
+    }
+
+    &__item {
+      padding-top: 6px;
+      padding-bottom: 9px;
+
+      &+.order-nav__item {
+        position: relative;
+        margin-left: 16px;
+        padding-left: 22px;
+
+        &::before {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 6px;
+          height: 8px;
+          content: '';
+          background-image: url(~src/assets/images/icons/arrow.svg);
+          transform: translateY(-50%);
+        }
+      }
+    }
+
+    &__link {
+      font-size: 14px;
+      line-height: 16px;
+      font-weight: bold;
+      color: $gray;
+
+      &.active {
+        color: $green;
+      }
+    }
+  }
+}

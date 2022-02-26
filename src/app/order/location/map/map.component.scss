@@ -1,0 +1,57 @@
+@import "../../../style/common.scss";
+
+.form {
+  display: inline-block;
+
+  &-group {
+    position: relative;
+    margin-bottom: 13px;
+    text-align: right;
+  }
+
+  &-label {
+    margin-right: 7px;
+    font-size: 14px;
+    line-height: 16px;
+    color: $base;
+  }
+
+  &-control {
+    max-width: 224px;
+    padding: 3px 7px;
+    font-size: 14px;
+    line-height: 16px;
+    color: $base;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid $gray;
+
+    &:placeholder-shown {
+      text-overflow: ellipsis;
+    }
+  }
+
+  &-reset {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    right: 5px;
+    bottom: 6px;
+    border: none;
+    background: url(~src/assets/images/icons/reset.svg) no-repeat;
+  }
+}
+
+.map {
+  margin-top: 16px;
+  
+  &-wrap {
+    margin-top: 32px;
+    margin-bottom: 160px;
+
+    @media (max-width: $tablet-min_width) {
+      margin-bottom: 50px;
+    }
+  }
+}

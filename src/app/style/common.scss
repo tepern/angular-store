@@ -65,7 +65,10 @@ h3,.h3 {
 }
 
 h4,.h4 {
-     
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 500;
+  color: $base;    
 }
 
 p {
@@ -81,7 +84,10 @@ img {
 }
 
 .strong {
-    
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 400;
+  color: $base;   
 }
 
 .title {
@@ -96,7 +102,9 @@ img {
 }
 
 .text {
-  font-style: italic;
+  font-size: 14px;
+  line-height: 16px;
+  color: $gray;
 }
 
 
@@ -200,6 +208,10 @@ button {
   &:disabled {
     background: $light;
   }
+
+  &[disabled] {
+    background: $light;
+  }
 }
 
 .section {
@@ -208,4 +220,8 @@ button {
 
 header, .header {
   z-index: 2;
+}
+
+.mb-32 {
+  margin-bottom: 32px;
 }

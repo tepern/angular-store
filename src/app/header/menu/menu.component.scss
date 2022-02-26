@@ -133,7 +133,7 @@
     color: $green;
 
     @media (max-width: $big-mobile_width) {
-        display: none;
+      display: none;
     }
 
     &_mobile {

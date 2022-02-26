@@ -108,5 +108,19 @@
       background-color: transparent;
       border: none;
     }
-  } 
+  }
+
+  &__lang {
+    position: absolute;
+    left: 20px;
+    bottom: 35px;
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: bold;
+    color: $green;
+
+    @media (max-width: $big-mobile_width) {
+      display: none;
+    }
+  }   
 }
