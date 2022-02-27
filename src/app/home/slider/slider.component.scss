@@ -124,12 +124,17 @@
   }
 
   &__btn {
+    display: inline-block;
     width: 164px;
     height: 48px;
     font-size: 18px;
-    line-height: 21px;
+    line-height: 48px;
     font-weight: 500;
     color: $light;
+
+    &:hover {
+      color: $light;
+    }
 
     &_green {
       background: linear-gradient(90deg, #13493F 0%, #0C7B1B 100%);
