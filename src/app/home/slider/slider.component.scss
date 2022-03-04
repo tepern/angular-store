@@ -11,8 +11,8 @@
     &-button {
 
       &-prev {
-        top: 0px;
-        bottom: 0px;
+        top: 0;
+        bottom: 0;
         left: 0;
         width: 64px;
         height: 100%;
@@ -35,8 +35,8 @@
       }
 
       &-next {
-        top: 0px;
-        bottom: 0px;
+        top: 0;
+        bottom: 0;
         right: 0;
         width: 64px;
         height: 100%;
@@ -86,16 +86,11 @@
   &-content {
     max-width: 100%;
     height: 100%;
-    padding-top: 237px;
-    padding-left: 96px;
-    padding-right: 96px;
-    padding-bottom: 32px;
+    padding: 237px 96px 32px;
     background-size: cover;
 
     @media (max-width: $smallpc_width) {
-      padding-top: 277px;
-      padding-left: 64px;
-      padding-right: 64px;
+      padding: 277px 64px 32px;
       background-position: center;
     }
   }

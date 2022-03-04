@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgModel} from '@angular/forms';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { MapComponent } from './map/map.component';
@@ -8,16 +8,13 @@ import { MapComponent } from './map/map.component';
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.scss']
 })
-export class LocationComponent implements OnInit {
+export class LocationComponent {
   form: FormGroup;
 
   constructor() {
     this.form = new FormGroup({
       point: new FormControl('', Validators.required),
     })
-  }
-
-  ngOnInit(): void {
   }
 
   submit() {

@@ -1,6 +1,6 @@
 interface Menu { 
   name: string 
-}
+};
 
 export const menu: Menu[] = [
   {'name': 'Парковка'},

@@ -2,7 +2,7 @@ interface Slider {
   title: string,
   text: string,
   img: string 
-}
+};
 
 export const slider: Slider[] = [
   {
