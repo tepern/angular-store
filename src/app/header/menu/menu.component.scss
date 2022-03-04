@@ -103,23 +103,8 @@
     }
 
     &__link {
-      transition: $transition_all;
-
-      svg {
-        width: 32px;
-        height: 32px;
-        object-fit: contain;
-        transition: $transition_all;
-      }
-
-      &:hover {
-
-        svg path {
-          fill-opacity: 1;
-          stroke-opacity: 0;
-          fill: $green;
-        }
-      }
+      color: $white;
+      transition: $transition_all;  
     }
   }
 
