@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { LocationComponent } from './location/location.component';
+import { ModelComponent } from './model/model.component';
 
 @Component({
   selector: 'app-order',
