@@ -27,8 +27,11 @@
 
   &-group {
     position: relative;
-    margin-bottom: 32px;
+    display: flex;
+    margin-bottom: 16px;
     text-align: right;
+    justify-content: space-between;
+    align-items: flex-end;
 
     @media (max-width: $tablet-min_width) {
       text-align: center;
@@ -56,18 +59,8 @@
 
   &__text {
     max-width: 101px;
-    margin-bottom: -5px;
     border: none;
-  }
-
-  &-reset {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    right: 5px;
-    bottom: 6px;
-    border: none;
-    background: url(~src/assets/images/icons/reset.svg) no-repeat;
+    color: $gray;
   }
 }
 
@@ -197,6 +190,22 @@
 
       &:nth-child(odd) {
         box-shadow: -1px 0 0 $light inset, 0 1px 0 $light inset, 1px 0 0 $light inset;
+
+        &:hover {
+          box-shadow: -1px 0 0 $gray inset, 0 1px 0 $gray inset, 1px 0 0 $gray inset, 0 -1px 0 $gray inset;
+        }
+
+        &:focus {
+          box-shadow: -1px 0 0 $green inset, 0 1px 0 $green inset, 1px 0 0 $green inset, 0 -1px 0 $green inset;
+        }
+
+        &:active {
+          box-shadow: -1px 0 0 $green inset, 0 1px 0 $green inset, 1px 0 0 $green inset, 0 -1px 0 $green inset;
+        }
+
+        &:visited {
+          box-shadow: -1px 0 0 $green inset, 0 1px 0 $green inset, 1px 0 0 $green inset, 0 -1px 0 $green inset;
+        }
       }
       
       &:nth-child(even) {
@@ -205,7 +214,31 @@
         @media (max-width: $tablet-min_width) {
           box-shadow: -1px 0 0 $light inset, 1px 0 0 $light inset, 0 1px 0 $light inset;
         }
-      }   
+
+        &:hover {
+          box-shadow: -1px 0 0 $gray inset, 0 1px 0 $gray inset, 1px 0 0 $gray inset, 0 -1px 0 $gray inset;
+        }
+
+        &:focus {
+          box-shadow: -1px 0 0 $green inset, 0 1px 0 $green inset, 1px 0 0 $green inset, 0 -1px 0 $green inset;
+        }
+
+        &:active {
+          box-shadow: -1px 0 0 $green inset, 0 1px 0 $green inset, 1px 0 0 $green inset, 0 -1px 0 $green inset;
+        }
+
+        &:visited {
+          box-shadow: -1px 0 0 $green inset, 0 1px 0 $green inset, 1px 0 0 $green inset, 0 -1px 0 $green inset;
+        }
+      } 
+
+      &:last-of-type {
+        box-shadow: -1px 0 0 $light inset, 0 1px 0 $light inset, 1px 0 0 $light inset, 0 -1px 0 $light inset;
+      } 
+
+      &:nth-last-child(2) {
+        box-shadow: -1px 0 0 $light inset, 0 1px 0 $light inset, 1px 0 0 $light inset, 0 -1px 0 $light inset;
+      } 
     }
     
     &__item {

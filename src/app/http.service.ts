@@ -18,37 +18,34 @@ export class HttpService {
 
   getData():Observable<Model[]> {
         
-      const $data = fetch('http://localhost:4200/api/db/car?page=2&limit=20',
-         {
-            headers: {
-              'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b'
-            },
-            method: 'GET', // GET, POST, PUT, DELETE
-          }
+    const $data = fetch('http://localhost:4200/api/db/car?page=2&limit=20',
+      {
+        headers: {
+          'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b'
+        },
+        method: 'GET', // GET, POST, PUT, DELETE
+      }
 
-      ).then(response => {
-          if (response.status !=200) {
-              return null;
-          } else {
-             return response.json();
-          }
+    ).then(response => {
+        if (response.status !=200) {
+          return null;
+        } else {
+          return response.json();
+        }
       },
       failResponse => {
-         catchError(this.handleError.bind(this));
-         return null;
-      });
-      
-      return from($data).pipe(map((data:any)=>{
-          return data["data"];})
-
-        );
-   }
-
-   private handleError(errors: HttpErrorResponse) {
-      const {message, error} = errors;
-      console.log(throwError(errors));
-      return throwError(errors);
+        catchError(this.handleError.bind(this));
+        return null;
+    });
+    
+    return from($data).pipe(map((data:any) => {
+      return data["data"];
+    }));
   }
 
-
+  private handleError(errors: HttpErrorResponse) {
+    const {message, error} = errors;
+    console.log(throwError(errors));
+    return throwError(errors);
+  }
 }

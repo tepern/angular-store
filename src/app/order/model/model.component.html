@@ -32,9 +32,18 @@
               <small></small>
           </div>
         </div>
+        <div class="form-group mb-32">
+          <label class="form-label">Модель</label>
+          <span>......................</span>
+          <input class="form-control form__text" type="text" id="model" name="model" formControlName="model">
+          <div class="alert alert-danger"
+              *ngIf="form.controls['model'].invalid && form.controls['model'].touched">
+              <small></small>
+          </div>
+        </div>
         <p class="strong mb-32">Цена: от 8 000 до 12 000 ₽</p>
         <div class="form-group">
-          <button class="btn form-right__btn" [disabled]="form.invalid">Выбрать модель</button>
+          <button class="btn form-right__btn" [disabled]="form.invalid">Дополнительно</button>
         </div>
       </form>
     </div>

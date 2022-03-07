@@ -19,7 +19,7 @@ export class ModelComponent implements OnInit {
   constructor(public httpService: HttpService) {
     this.form = new FormGroup({
       point: new FormControl('', Validators.required),
-      model: new FormControl('', Validators.required),
+      model: new FormControl('Hyndai, i30 N', Validators.required),
     })
   }
 
@@ -36,10 +36,35 @@ export class ModelComponent implements OnInit {
   }
 
   onModelChange(): void {
-    if(this.model) {
-        
+    if(this.carModel) {
+    
+      const model = this.model;     
+      const carModel = this.carModel;
+  
+      if (carModel == "Премиум") {
+        const model = this.model;
+        this.httpService.getData().subscribe((data: Model[]) => {
+          this.model = data.filter(function(item) {
+            return item.categoryId.name.indexOf('Люкс')>-1;
+          });
+        });     
+      } else if (carModel == "Эконом") {
+          const model = this.model;
+          this.httpService.getData().subscribe((data: Model[]) => {
+            this.model = data.filter(function(item) {
+              return item.categoryId.name.indexOf('эконом')>-1;
+            });
+          }); 
+      } else if (carModel == "Все модели") {
+          this.httpService.getData().subscribe((data: Model[]) => {
+            this.model = data; 
+          });
+      }
+       
     } else {
-        
+        this.httpService.getData().subscribe((data: Model[]) => {
+          this.model = data; 
+        });
     }
   }
 }
