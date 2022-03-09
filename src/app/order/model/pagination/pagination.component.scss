@@ -1,0 +1,14 @@
+@import "../../../style/common.scss";
+
+.pagination {
+  margin-bottom: 50px;
+
+  button {
+     border: none;
+     background: transparent;
+  }
+
+  .active {
+    color: $green;
+  }
+}

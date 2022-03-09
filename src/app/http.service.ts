@@ -16,9 +16,9 @@ export class HttpService {
   constructor(private http: HttpClient) {
   }
 
-  getData():Observable<Model[]> {
+  getData(page: number, limit: number):Observable<Model[]> {
         
-    const $data = fetch('http://localhost:4200/api/db/car?page=2&limit=20',
+    const $data = fetch('http://localhost:4200/api/db/car?page=' + (page-1) + '&limit=' + limit,
       {
         headers: {
           'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b'

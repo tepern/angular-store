@@ -1,0 +1,8 @@
+<div class="model-form">
+  <form id="model-form" *ngIf="carAllModel">
+    <div class="model-form-group" *ngFor="let item of carAllModel">
+      <input type="radio" id="{{ item.class }}" class="model-form-control" name="model" [(ngModel)]="carModel" #model="ngModel" (ngModelChange)="onModelChange()" value="{{ item.name }}"/>
+      <label class="model-form__label" for="{{ item.class }}">{{ item.name }}</label>
+    </div>
+  </form>
+</div>

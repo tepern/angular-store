@@ -18,6 +18,8 @@ import { LocationComponent } from './order/location/location.component';
 import { MapComponent } from './order/location/map/map.component';
 import { ModelComponent } from './order/model/model.component';
 import { HttpService } from "./http.service";
+import { PaginationComponent } from './order/model/pagination/pagination.component';
+import { FilterComponent } from './order/model/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { HttpService } from "./http.service";
     LocationComponent,
     MapComponent,
     ModelComponent,
+    PaginationComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule,

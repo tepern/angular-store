@@ -1,14 +1,7 @@
 <section class="section">
   <div class="container model-container">
     <div class="model-left">
-      <div class="model-form">
-         <form id="model-form" *ngIf="carAllModel">
-          <div class="model-form-group" *ngFor="let item of carAllModel">
-            <input type="radio" id="{{ item.class }}" class="model-form-control" name="model" [(ngModel)]="carModel" #model="ngModel" (ngModelChange)="onModelChange()" value="{{ item.name }}"/>
-            <label class="model-form__label" for="{{ item.class }}">{{ item.name }}</label>
-          </div>
-        </form>
-      </div>
+      <app-filter (filter)="onModelChange($event)"></app-filter>
       <div class="model-list" *ngIf="model">
         <a class="model-list__link" *ngFor="let item of model">
           <div class="model-list__item">
@@ -18,6 +11,18 @@
             </div>
           </div>
         </a>  
+      </div>
+      <div class="model-pagination" *ngIf="carModel == 'Все модели'">
+        <app-pagination
+          [count]="countVar"
+          [page]="pageVar"
+          [perPage]="perPageVar"
+          [pageToShow]="pagesToShow"
+          [loading]="loadingVar"
+          (goPrev)="prevPage()"
+          (goNext)="nextPage()"
+          (goPage)="goToPage($event)">
+        </app-pagination>
       </div>
     </div>
     <div class="model-right">
