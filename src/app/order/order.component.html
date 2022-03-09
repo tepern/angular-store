@@ -1,0 +1,37 @@
+<div class="content">
+  <header class="header">
+    <app-header></app-header>
+  </header>
+  <div class="order-nav">
+    <div class="container">
+      <ul class="order-nav-list">
+        <li class="order-nav__item">
+          <a class="order-nav__link" [ngClass]="{active: tab == 'location'}" (click)="tabs('location')">Местоположение</a>
+        </li>
+        <li class="order-nav__item">
+          <a class="order-nav__link" [ngClass]="{active: tab == 'model'}" (click)="tabs('model')">Модель</a>
+        </li>
+        <li class="order-nav__item">
+          <a class="order-nav__link" [ngClass]="{active: tab == 'comment'}" (click)="tabs('comment')">Дополнительно</a>
+        </li>
+        <li class="order-nav__item">
+          <a class="order-nav__link" [ngClass]="{active: tab == 'total'}" (click)="tabs('total')">Итого</a>
+        </li>
+      </ul>
+    </div>
+  </div> 
+  <div [ngSwitch]="tab">
+    <ng-template ngSwitchCase="location">
+      <app-location></app-location>
+    </ng-template> 
+    <ng-template ngSwitchCase="model">
+      text
+    </ng-template>
+    <ng-template ngSwitchCase="comment">
+      text
+    </ng-template>
+    <ng-template ngSwitchCase="total">
+      text
+    </ng-template>
+  </div>  
+</div>

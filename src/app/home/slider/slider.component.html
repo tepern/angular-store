@@ -1,0 +1,12 @@
+<swiper [slidesPerView]="1" *ngIf="slider" [navigation]="true" [pagination]="{ clickable: true }"
+>
+  <ng-template swiperSlide *ngFor="let slide of slider">
+    <div class="slider-content" [ngStyle]="{'background-image': 'url(' + slide.img + ')'}">
+    <div class="slider__title">{{ slide.title }}</div>
+    <div class="slider__text">{{ slide.text }}</div>
+    <div class="slider-button">
+      <a class="slider__btn slider__btn_green btn" routerLink="/order">Подробнее</a>
+    </div>
+    </div>
+  </ng-template>
+</swiper>

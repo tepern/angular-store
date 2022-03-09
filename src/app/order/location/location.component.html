@@ -1,0 +1,25 @@
+<section class="section">
+  <div class="container location-container">
+    <div class="location-left">
+      <app-map></app-map>
+    </div>
+    <div class="location-right">
+      <h4 class="h4 location-right__title">Ваш заказ:</h4>
+      <form class="form form-right" [formGroup]="form" novalidate (ngSubmit)="submit()">
+        <div class="form-group">
+          <label class="form-label">Пункт выдачи</label>
+          <span>......................</span>
+          <textarea class="form-control form__text" type="text" id="point" name="point" formControlName="point" placeholder="Ульяновск, Нариманова 42"></textarea>
+          <div class="alert alert-danger"
+              *ngIf="form.controls['point'].invalid && form.controls['point'].touched">
+              <small></small>
+          </div>
+        </div>
+        <p class="strong mb-32">Цена: от 8 000 до 12 000 ₽</p>
+        <div class="form-group">
+          <button class="btn form-right__btn" [disabled]="form.invalid">Выбрать модель</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

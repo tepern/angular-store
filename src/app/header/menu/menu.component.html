@@ -1,0 +1,37 @@
+<nav class="header-nav">
+  <div class="nav">
+    <button class="header-nav__close" (click)="toggle()"></button>
+    <div class="header-nav__bg"></div>
+    <div class="header-menu">
+      <ul class="header-menu-list" *ngIf="menu">
+        <li class="header-menu__item" *ngFor="let item of menu">
+          <a class="header-menu__link">{{ item.name }}</a>
+        </li>
+      </ul>
+      <ul class="header-socio">
+        <li class="header-socio__item">
+          <a class="header-socio__link">
+            <svg width="32" height="32">
+              <use href="assets/images/icons/Telegram_white.svg#telegram"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="header-socio__item">
+          <a class="header-socio__link">
+            <svg width="32" height="32">
+              <use href="assets/images/icons/Facebook_white.svg#facebook"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="header-socio__item">
+          <a class="header-socio__link">
+            <svg width="32" height="32">
+              <use href="assets/images/icons/Instagram_white.svg#instagram"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <a class="header__lang header__lang_mobile">Eng</a>     
+</nav>

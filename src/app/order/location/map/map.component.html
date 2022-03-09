@@ -1,0 +1,19 @@
+<div class="form">
+  <form id="search-form">
+    <div class="form-group">
+      <label class="form-label">Город</label>
+      <input type="text" class="form-control" name="city" [(ngModel)]="city" value="Ульяновск"/>
+      <button class="form-reset"></button>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Пункт выдачи</label>
+      <input type="search" class="form-control" placeholder="Начните вводить пункт ..." name="search" [(ngModel)]="textSearch" #search="ngModel" (ngModelChange)="onSearchChange()"/>
+    </div>
+  </form>    
+</div>
+<div class="map-wrap">
+  <p class="text">Выбрать на карте:</p>
+  <div class="map" id="map">
+    <img src="assets/images/map.png" alt="">
+  </div>
+</div>
