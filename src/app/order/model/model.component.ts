@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NgModel} from '@angular/forms';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
-import { HttpService } from "../../http.service";
-import { Model, carAllModel } from "../../model";
+import { HttpService } from "../http.service";
+import { Model } from "./model";
 import { PaginationComponent } from './pagination/pagination.component';
 
 @Component({
@@ -14,8 +14,7 @@ export class ModelComponent implements OnInit {
   
   public model: Model[] = [];
   form: FormGroup;
-  carModel: string = "Все модели"; 
-  carAllModel = carAllModel;
+  carModel: string = "Все модели";
   countVar: number = 85;
   pageVar: number = 1;
   perPageVar: number = 20;
@@ -102,7 +101,6 @@ export class ModelComponent implements OnInit {
   countModels(): void {
     this.httpService.getData(1,0).subscribe((data: Model[]) => {
       this.countVar = data.length;
-      console.log(data.length);
     });
   }
 }

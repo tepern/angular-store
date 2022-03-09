@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { carAllModel } from "../../../model";
+import { carAllModel } from "./carAllModel";
 
 @Component({
   selector: 'app-filter',

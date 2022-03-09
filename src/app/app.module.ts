@@ -17,7 +17,7 @@ import { OrderComponent } from './order/order.component';
 import { LocationComponent } from './order/location/location.component';
 import { MapComponent } from './order/location/map/map.component';
 import { ModelComponent } from './order/model/model.component';
-import { HttpService } from "./http.service";
+import { HttpService } from "./order/http.service";
 import { PaginationComponent } from './order/model/pagination/pagination.component';
 import { FilterComponent } from './order/model/filter/filter.component';
 
