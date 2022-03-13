@@ -15,7 +15,7 @@ export class Thumbnail {
   ) {}  
 }
 
-export class Model {
+export class CarModel {
   constructor(
     public updatedAt: bigint,
     public createdAt: bigint,

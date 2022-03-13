@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Observable, throwError, Subject, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { catchError, retry } from 'rxjs/operators';
-import { Model } from './model/model';
+import { CarModel } from './model/model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,11 +16,11 @@ export class HttpService {
   constructor(private http: HttpClient) {
   }
 
-  getData(page: number, limit: number):Observable<Model[]> {
+  getCarsModels(page: number, limit: number):Observable<CarModel[]> {
 
-    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', '5e25c641099b810b946c5d5b');
+    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
 
-    return this.http.get<Model[]>('http://localhost:4200/api/db/car?page=' + (page-1) + '&limit=' + limit, {headers: apiHeaders})
+    return this.http.get<CarModel[]>('http://localhost:4200/api/db/car?page=' + (page-1) + '&limit=' + limit, {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
     }))

@@ -1,7 +1,10 @@
 <section class="section">
   <div class="container model-container">
     <div class="model-left">
-      <app-filter (filter)="onModelChange($event)"></app-filter>
+      <app-filter 
+        [loadingVar]="pagination.loadingVar" 
+        (filter)="onModelChange($event)">  
+      </app-filter>
       <div class="model-list" *ngIf="model">
         <a class="model-list__link" *ngFor="let item of model">
           <div class="model-list__item">
@@ -12,13 +15,13 @@
           </div>
         </a>  
       </div>
-      <div class="model-pagination" *ngIf="carModel == 'Все модели'">
+      <div class="model-pagination" *ngIf="carModel == 'Все модели' && pagination.loadingVar">
         <app-pagination
-          [count]="countVar"
-          [page]="pageVar"
-          [perPage]="perPageVar"
-          [pageToShow]="pagesToShow"
-          [loading]="loadingVar"
+          [count]="pagination.countVar"
+          [page]="pagination.pageVar"
+          [perPage]="pagination.perPageVar"
+          [pageToShow]="pagination.pagesToShow"
+          [loading]="pagination.loadingVar"
           (goPrev)="prevPage()"
           (goNext)="nextPage()"
           (goPage)="goToPage($event)">
@@ -32,10 +35,6 @@
           <label class="form-label">Пункт выдачи</label>
           <span>......................</span>
           <textarea class="form-control form__text" type="text" id="point" name="point" formControlName="point" placeholder="Ульяновск, Нариманова 42"></textarea>
-          <div class="alert alert-danger"
-              *ngIf="form.controls['point'].invalid && form.controls['point'].touched">
-              <small></small>
-          </div>
         </div>
         <div class="form-group mb-32">
           <label class="form-label">Модель</label>

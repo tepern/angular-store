@@ -1,8 +1,8 @@
 @import "../../../style/common.scss";
 
-.model {
+.car {
 
-  &-form {
+  &-filter {
     margin-bottom: 48px;
 
     &-group {
@@ -30,6 +30,7 @@
       padding-left: 20px;
       font-size: 14px;
       line-height: 16px;
+      color: $gray;
 
       &#{&} {
         margin-right: 16px;
