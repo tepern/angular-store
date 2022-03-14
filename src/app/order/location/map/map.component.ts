@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModel} from '@angular/forms';
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-map',
@@ -22,6 +23,10 @@ export class MapComponent implements OnInit {
     } else {
         
     }
+  }
+
+  reset(form: NgForm) {
+    form.resetForm();
   }
 
 }

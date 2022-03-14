@@ -31,4 +31,15 @@ export class HttpService {
     const {message, error} = errors;
     return throwError(errors);
   }
+
+  getCarModel(id: string):Observable<CarModel> {
+
+    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
+
+    return this.http.get<CarModel>('http://localhost:4200/api/db/car/' + id, {headers: apiHeaders})
+    .pipe(map((data:any) => {
+      return data["data"];
+    }))
+    .pipe(catchError(this.handleError.bind(this)));      
+  }
 }

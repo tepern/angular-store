@@ -1,0 +1,9 @@
+<div class="color">
+  <p class="color__title">Цвет</p>
+  <form id="color" *ngIf="carColors">
+    <div class="color-group" *ngFor="let item of carColors">
+      <input type="radio" id="{{ item }}" class="color-control" name="color" [(ngModel)]="carColor" #color="ngModel" (ngModelChange)="onColorChange()" value="{{ item }}"/>
+      <label class="color__label" for="{{ item }}">{{ item }}</label>
+    </div>
+  </form>
+</div>
