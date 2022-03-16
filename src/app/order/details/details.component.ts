@@ -38,4 +38,12 @@ export class DetailsComponent implements OnInit {
 
   }
 
+  getStartDate(event: any) {
+
+  }
+
+  getEndDate(event: any) {
+  
+  }
+
 }

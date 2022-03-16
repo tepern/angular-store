@@ -3,6 +3,13 @@
 .color {
   margin-bottom: 48px;
 
+  &__title {
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 16px;
+    color: $base;
+  }
+
   &-group {
     display: inline-block;
   }

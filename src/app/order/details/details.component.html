@@ -6,6 +6,12 @@
           [carColors]="carModel.colors" 
           (color)="onColorChange($event)">  
         </app-color>
+      </div>
+      <div class="date-wrap">
+        <app-dates 
+          (start)="getStartDate($event)"
+          (end)="getEndDate($event)">  
+        </app-dates>
       </div>  
     </div>
     <div class="model-right">

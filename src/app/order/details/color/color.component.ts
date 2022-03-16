@@ -15,5 +15,4 @@ export class ColorComponent {
   onColorChange() {
     this.color.emit(this.carColor);
   }
-
 }

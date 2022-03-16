@@ -22,6 +22,7 @@ import { PaginationComponent } from './order/model/pagination/pagination.compone
 import { CarFilterComponent } from './order/model/car-filter/car-filter.component';
 import { DetailsComponent } from './order/details/details.component';
 import { ColorComponent } from './order/details/color/color.component';
+import { DatesComponent } from './order/details/dates/dates.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ColorComponent } from './order/details/color/color.component';
     CarFilterComponent,
     DetailsComponent,
     ColorComponent,
+    DatesComponent,
   ],
   imports: [
     BrowserModule,
