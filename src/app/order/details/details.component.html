@@ -12,7 +12,17 @@
           (start)="getStartDate($event)"
           (end)="getEndDate($event)">  
         </app-dates>
-      </div>  
+      </div> 
+      <div class="rate-wrap">
+        <app-rate 
+          (rateId)="getRate($event)">  
+        </app-rate>
+      </div> 
+      <div class="service-wrap">
+        <app-car-service 
+          (service)="getService($event)">  
+        </app-car-service>
+      </div> 
     </div>
     <div class="model-right">
       <h4 class="h4 model-right__title">Ваш заказ:</h4>
@@ -22,7 +32,7 @@
           <span>......................</span>
           <textarea class="form-control form__text" type="text" id="point" name="point" formControlName="point" placeholder="Ульяновск, Нариманова 42"></textarea>
         </div>
-        <div class="form-group mb-32">
+        <div class="form-group">
           <label class="form-label">Модель</label>
           <span>......................</span>
           <input class="form-control form__text" type="text" id="model" name="model" formControlName="model">
@@ -31,9 +41,36 @@
               <small></small>
           </div>
         </div>
-        <p class="strong mb-32">Цена: от 8 000 до 12 000 ₽</p>
         <div class="form-group">
-          <button class="btn form-right__btn" [disabled]="form.invalid">Дополнительно</button>
+          <label class="form-label">Дительность аренды</label>
+          <span>......</span>
+          <input class="form-control form__text" type="text" id="duration" name="duration" formControlName="duration">
+          <div class="alert alert-danger"
+              *ngIf="form.controls['duration'].invalid && form.controls['duration'].touched">
+              <small></small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Тариф</label>
+          <span>......................</span>
+          <input class="form-control form__text" type="text" id="rate" name="rate" formControlName="rate">
+          <div class="alert alert-danger"
+              *ngIf="form.controls['rate'].invalid && form.controls['rate'].touched">
+              <small></small>
+          </div>
+        </div>
+        <div class="form-group mb-32">
+          <label class="form-label">Полный бак</label>
+          <span>......................</span>
+          <input class="form-control form__text" type="text" id="fullTank" name="fullTank" formControlName="fullTank">
+          <div class="alert alert-danger"
+              *ngIf="form.controls['fullTank'].invalid && form.controls['fullTank'].touched">
+              <small></small>
+          </div>
+        </div>
+        <p class="strong mb-32">Цена: 16 000 ₽</p>
+        <div class="form-group">
+          <button class="btn form-right__btn" [disabled]="form.invalid">Итого</button>
         </div>
       </form>
     </div>

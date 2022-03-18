@@ -23,6 +23,8 @@ import { CarFilterComponent } from './order/model/car-filter/car-filter.componen
 import { DetailsComponent } from './order/details/details.component';
 import { ColorComponent } from './order/details/color/color.component';
 import { DatesComponent } from './order/details/dates/dates.component';
+import { RateComponent } from './order/details/rate/rate.component';
+import { CarServiceComponent } from './order/details/car-service/car-service.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { DatesComponent } from './order/details/dates/dates.component';
     DetailsComponent,
     ColorComponent,
     DatesComponent,
+    RateComponent,
+    CarServiceComponent,
   ],
   imports: [
     BrowserModule,
