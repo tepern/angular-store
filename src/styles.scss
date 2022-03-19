@@ -189,6 +189,7 @@ a {
 
 button {
   cursor: pointer;
+  font-family: $roboto, Helvetica, sans-serif;
 
   &:focus {
     outline: none;
@@ -196,11 +197,13 @@ button {
 }
 
 .btn {
+  font-size: 18px;
+  font-weight: 500;
+  color: $white;
   background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
   background-blend-mode: darken;
   box-shadow: 0px 2px 4px rgba(90, 97, 105, 0.12);
   border-radius: 8px;
-  color: $white;
   text-align: center;
   border: none;
   transition: $transition_all;

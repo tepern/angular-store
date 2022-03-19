@@ -18,7 +18,6 @@ export class RateComponent implements OnInit {
 
     this.httpService.getRates().subscribe((data: Rate[]) => {
       this.rates = data;
-      console.log(this.rates);
     });
   }
 

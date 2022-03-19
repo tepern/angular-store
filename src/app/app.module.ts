@@ -25,6 +25,7 @@ import { ColorComponent } from './order/details/color/color.component';
 import { DatesComponent } from './order/details/dates/dates.component';
 import { RateComponent } from './order/details/rate/rate.component';
 import { CarServiceComponent } from './order/details/car-service/car-service.component';
+import { TotalComponent } from './order/total/total.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CarServiceComponent } from './order/details/car-service/car-service.com
     DatesComponent,
     RateComponent,
     CarServiceComponent,
+    TotalComponent,
   ],
   imports: [
     BrowserModule,

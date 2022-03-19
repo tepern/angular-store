@@ -68,6 +68,10 @@
       &.active {
         color: $green;
       }
+
+      &.full {
+        color: $base;
+      }
     }
   }
 }
