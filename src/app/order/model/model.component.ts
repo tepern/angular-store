@@ -39,7 +39,7 @@ export class ModelComponent implements OnInit {
     this.form.reset();
   }
 
-  onModelChange(event: any): void {
+  onModelChange(event: string): void {
     if(this.carModel) {
     
       const model = this.model;     

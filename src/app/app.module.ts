@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularYandexMapsModule } from 'angular8-yandex-maps';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MainComponent } from './home/main/main.component';
@@ -57,6 +58,7 @@ import { TotalComponent } from './order/total/total.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularYandexMapsModule,
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]
