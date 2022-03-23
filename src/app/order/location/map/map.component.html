@@ -2,7 +2,7 @@
   <form id="search-form" #searchForm="ngForm">
     <div class="form-group">
       <label class="form-label">Город</label>
-      <input type="text" class="form-control" name="city" [(ngModel)]="city" value="Ульяновск" #search="ngModel" (ngModelChange)="onCitySearch()"/>
+      <input type="text" class="form-control" name="city" [(ngModel)]="city" #search="ngModel" (ngModelChange)="onCitySearch()"/>
       <button class="form-reset" (click)="reset(searchForm)"></button>
     </div>
     <div class="search-err text" *ngIf="errCity">Города нет в списке</div>
@@ -13,13 +13,8 @@
   </form>    
 </div>
 <div class="map-wrap">
-  <p class="text">Выбрать на карте:</p>
-  <div class="map" id="map">
-    <img src="assets/images/map.png" alt="">
-  </div>
-  <div class="map-wrap">
-  <ya-map [center]="[55.751952, 37.600739]" [zoom]="12">
-    <ya-placemark [geometry]="[55.751952, 37.600739]"></ya-placemark>
+  <ya-map [center]="[55.751952, 37.600739]" [zoom]="12" (ready)="onMapReady($event)">
+    <ya-placemark [geometry]="[55.751952, 37.600739]" [properties]="placemarkProperties"
+      [options]="placemarkOptions"></ya-placemark>
   </ya-map>
-</div>
 </div>

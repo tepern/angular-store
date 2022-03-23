@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularYandexMapsModule } from 'angular8-yandex-maps';
+import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MainComponent } from './home/main/main.component';
@@ -27,6 +27,11 @@ import { DatesComponent } from './order/details/dates/dates.component';
 import { RateComponent } from './order/details/rate/rate.component';
 import { CarServiceComponent } from './order/details/car-service/car-service.component';
 import { TotalComponent } from './order/total/total.component';
+
+const mapConfig: YaConfig = {
+  apikey: '215898fb-7ea4-4f2a-97e4-e0e1f172c5c5',
+  lang: 'ru_RU',
+};
 
 @NgModule({
   declarations: [
@@ -58,7 +63,7 @@ import { TotalComponent } from './order/total/total.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularYandexMapsModule,
+    AngularYandexMapsModule.forRoot(mapConfig),
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]
