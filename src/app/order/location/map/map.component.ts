@@ -6,12 +6,6 @@ import { Point } from '../point';
 import { HttpService } from "../../http.service";
 import { YaReadyEvent, YaGeocoderService } from 'angular8-yandex-maps';
 
-interface Placemark {
-  geometry: number[];
-  properties: ymaps.IPlacemarkProperties;
-  options: ymaps.IPlacemarkOptions;
-}
-
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -24,6 +18,7 @@ export class MapComponent implements OnInit {
   points: Point[] = [];
   public errCity: string | null = null;
   public errPoint: string | null = null;
+  private objectManager: ymaps.ObjectManager | null = null;
 
   constructor(
     public httpService: HttpService, 
@@ -93,6 +88,7 @@ export class MapComponent implements OnInit {
   onMapReady(event: YaReadyEvent<ymaps.Map>): void {
     this.map = event.target;
     const map = event.target;
+
     ymaps.geolocation
       .get({
         provider: 'browser',
@@ -166,6 +162,16 @@ export class MapComponent implements OnInit {
             iconImageHref: '/assets/images/icons/placemark.svg',
             iconImageSize: [18, 18],
           });
+
+          firstGeoObject.events.add('click', (event: ymaps.Event) => {
+            console.log(firstGeoObject.properties.get('name'));
+            const address = firstGeoObject.properties.get('name')
+            this.textSearch = address;
+            const elem = document.getElementsByName('search')[0]; 
+            elem.setAttribute('value', address);
+            elem.dispatchEvent(new Event("focus"));
+            elem.dispatchEvent(new Event("blur"));
+          })
 
           map.geoObjects.add(firstGeoObject);
 
