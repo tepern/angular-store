@@ -6,44 +6,43 @@ import { Point } from '../point';
 import { HttpService } from "../../http.service";
 import { YaReadyEvent, YaGeocoderService } from 'angular8-yandex-maps';
 
+interface Placemark {
+  geometry: number[];
+  properties: ymaps.IPlacemarkProperties;
+  options: ymaps.IPlacemarkOptions;
+}
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  
-  textSearch: string = '';
+  map: ymaps.Map | null = null;
+  textSearch: string | null = null;
   city: string | null = null; 
-  cities: City[] = [];
   points: Point[] = [];
   public errCity: string | null = null;
   public errPoint: string | null = null;
 
-  constructor(public httpService: HttpService, private yaGeocoderService: YaGeocoderService) { }
+  constructor(
+    public httpService: HttpService, 
+    public yaGeocoderService: YaGeocoderService
+  ) { }
 
   ngOnInit(): void {
-    this.httpService.getCity().subscribe((data: City[]) => {
-      this.cities = data;
-    });
     this.httpService.getPoint().subscribe((data: Point[]) => {
       this.points = data;
     });
-    this.getPoint(this.city);
   }
 
-  onSearchChange(): void {
-    if(this.textSearch) {
-        
-    } else {
-        
-    }
-  }
-
-  reset(form: NgForm) {
-    form.resetForm();
+  reset(field: NgModel) {
+    field.reset();
     if(this.errCity) {
       this.errCity = null;
+    }
+    if(this.errPoint) {
+      this.errPoint = null;
     }
   }
 
@@ -52,23 +51,22 @@ export class MapComponent implements OnInit {
       this.errCity = null;
     }
     if(this.city) {
-      const cities = this.cities;
       const citySearch = this.city;
-      this.cities = cities.filter(function(city) {
-        return city.name.indexOf(citySearch)>-1;
+      const points = this.points;
+      const cityFilter = points.filter(function(point) {
+        return (point.cityId && point.cityId.name.indexOf(citySearch)>-1);  
       });
-      if(this.cities.length==0) {
+      if(cityFilter.length==0) {
         this.errCity = "Города нет в списке";
         throw "Города нет в списке";
       } else {
-        this.city = this.cities[0].name;
-        console.log(this.city);
-        this.getPoint(this.city);
+        this.getPoints(this.map,cityFilter);
       }
     } else {
-      this.city = ''; 
+      this.city = null; 
     }
   }
+
 
   onPointSearch(): void {
     if(this.errPoint) {
@@ -76,89 +74,55 @@ export class MapComponent implements OnInit {
     }
     if(this.textSearch) {
       const points = this.points;
+      const city = this.city;
       const textSearch = this.textSearch;
-      this.points = points.filter(function(point) {
-        return point.name.indexOf(textSearch)>-1;
+      const pointsFilter = points.filter(function(point) {
+        return (point.cityId && point.name.indexOf(textSearch)>-1 || point.cityId && point.address.indexOf(textSearch)>-1);
       });
-      if(this.points.length==0) {
+      if(pointsFilter.length==0) {
         this.errPoint = "Ничего не найдено";
         throw "Ничего не найдено";
       } else {
-        this.textSearch = this.points[0].name;
+        this.getPoints(this.map,pointsFilter);
       }
     } else {
-      this.textSearch = ''; 
+      this.textSearch = null; 
     }
   }
 
   onMapReady(event: YaReadyEvent<ymaps.Map>): void {
+    this.map = event.target;
     const map = event.target;
-
     ymaps.geolocation
       .get({
         provider: 'browser',
         mapStateAutoApply: true,
       })
       .then((result) => {
-        /**
-         * We'll mark the position obtained through the browser in blue.
-         * If the browser does not support this functionality, the placemark will not be added to the map.
-         */
+        //Если пользователь разрешил определить геолокацию
         const city = result.geoObjects.get(0).properties.get('name');
+        
         this.city = city;
-
-        //result.geoObjects.options.set('preset', 'islands#blueCircleIcon');
-        map.geoObjects.add(result.geoObjects);
-          
         const elem = document.getElementsByName('city')[0]; 
         elem.dispatchEvent(new Event("focus"));
         elem.dispatchEvent(new Event("blur"));
         const closestPoints = this.getPoint(this.city);
-        const geocodeResult = this.yaGeocoderService.geocode(city + ',' + closestPoints[0].address, {
-          results: 1,
-        });
-
-        geocodeResult.subscribe((result: any) => {
-          // Selecting the first result of geocoding.
-          const firstGeoObject = result.geoObjects.get(0);
-
-          // The coordinates of the geo object.
-          const coords = firstGeoObject.geometry.getCoordinates();
-
-          // The viewport of the geo object.
-          const bounds = firstGeoObject.properties.get('boundedBy');
-
-          firstGeoObject.options.set(
-            'preset',
-            'islands#darkBlueDotIconWithCaption'
-          );
-
-          firstGeoObject.properties.set(
-            'iconCaption',
-            firstGeoObject.getAddressLine()
-          );
-
-          /*firstGeoObject.properties.set(
-            'balloonContent',
-            firstGeoObject.getAddressLine()
-          );*/
-
-          firstGeoObject.options.set({
-            iconLayout: 'default#image',
-            iconImageHref: '/assets/images/icons/placemark.svg',
-            iconImageSize: [18, 18],
-          });
-
-          // Adding first found geo object to the map.
-          event.target.geoObjects.add(firstGeoObject);
-
-          // Scaling the map to the geo object viewport.
-          event.target.setBounds(bounds, {
-            // Checking the availability of tiles at the given zoom level.
-            checkZoomRange: true,
-          });
-        });
-    });
+        if(closestPoints) {
+        //Если в городе есть пункты
+          this.getPoints(map,closestPoints);
+        } else {
+        //Если в городе нет пунктов - то выводятся все
+          this.getPoints(map,this.points);
+        }         
+      },
+      () => { 
+        if(this.city) {
+          const closestPoints = this.getPoint(this.city);
+          this.getPoints(map,closestPoints);
+        }
+        this.getPoints(map,this.points); 
+      }
+    );
   }
 
   getPoint(city: string | null): any {
@@ -166,24 +130,50 @@ export class MapComponent implements OnInit {
       const points = this.points;
 
       const closestPoints = points.filter(function(point) {
-        return (point.cityId) && (point.cityId.name.indexOf(city)>-1);
+        return (point.cityId && point.cityId.name.indexOf(city)>-1);
       });
-      console.log(closestPoints);
       
       return closestPoints;  
     }
   }
 
-  placemarkProperties: ymaps.IPlacemarkProperties = {
-    hintContent: 'Hint content',
-    balloonContent: 'Baloon content',
-  };
+  getPoints(map: any, allPoints: Point[]):void {
+    const points = allPoints;
+    
+    points.forEach((point: Point) => {
+      const currentCity = point.cityId.name;
+      const address = point.address;
+      if(currentCity) {
+        const geocodeResult = this.yaGeocoderService.geocode(currentCity + ',' + address, {
+          results: 1,
+        });
+   
+        geocodeResult.subscribe((result: any) => {
+        
+          const firstGeoObject = result.geoObjects.get(0);
 
-  placemarkOptions: ymaps.IPlacemarkOptions = {
-    iconLayout: 'default#image',
-    iconImageHref:
-      '/assets/images/icons/placemark.svg',
-    iconImageSize: [18, 18],
-  };
+          const coords = firstGeoObject.geometry.getCoordinates();
 
+          const bounds = firstGeoObject.properties.get('boundedBy');
+
+          firstGeoObject.properties.set(
+            'iconCaption',
+            firstGeoObject.getAddressLine()
+          );
+
+          firstGeoObject.options.set({
+            iconLayout: 'default#image',
+            iconImageHref: '/assets/images/icons/placemark.svg',
+            iconImageSize: [18, 18],
+          });
+
+          map.geoObjects.add(firstGeoObject);
+
+          map.setBounds(bounds, {
+            checkZoomRange: true,
+          });
+        });
+      }
+    });
+  }
 }
