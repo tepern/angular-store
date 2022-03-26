@@ -19,6 +19,7 @@ import { LocationComponent } from './order/location/location.component';
 import { MapComponent } from './order/location/map/map.component';
 import { ModelComponent } from './order/model/model.component';
 import { HttpService } from "./order/http.service";
+import { OrderService } from "./order.service";
 import { PaginationComponent } from './order/model/pagination/pagination.component';
 import { CarFilterComponent } from './order/model/car-filter/car-filter.component';
 import { DetailsComponent } from './order/details/details.component';
@@ -65,7 +66,7 @@ const mapConfig: YaConfig = {
     HttpClientModule,
     AngularYandexMapsModule.forRoot(mapConfig),
   ],
-  providers: [HttpService],
+  providers: [HttpService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
