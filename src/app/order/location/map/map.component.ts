@@ -4,7 +4,7 @@ import { NgForm } from "@angular/forms";
 import { City } from '../city';
 import { Point } from '../point';
 import { HttpService } from "../../http.service";
-import { OrderService } from "../../../order.service";
+import { OrderService } from "../../order.service";
 import { YaReadyEvent, YaGeocoderService } from 'angular8-yandex-maps';
 
 @Component({

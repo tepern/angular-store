@@ -3,7 +3,7 @@ import { HeaderComponent } from '../header/header.component';
 import { LocationComponent } from './location/location.component';
 import { ModelComponent } from './model/model.component';
 import { HttpService } from "./http.service";
-import { OrderService } from "../order.service";
+import { OrderService } from "./order.service";
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,9 +17,10 @@ export class OrderComponent implements OnInit {
   subscription: Subscription;
 
   constructor(private orderService: OrderService) {
-     this.subscription = orderService.point$.subscribe(
+    this.subscription = orderService.point$.subscribe(
       point => {
         this.point = point;
+        console.log(this.point);
     });
   }
 
