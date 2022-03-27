@@ -14,13 +14,20 @@ import { Subscription } from 'rxjs';
 export class OrderComponent implements OnInit {
   tab: string = 'location';
   point: string | null = null;
+  modelId: string = '';
   subscription: Subscription;
+  modelSub: Subscription;
 
   constructor(private orderService: OrderService) {
     this.subscription = orderService.point$.subscribe(
       point => {
         this.point = point;
-        console.log(this.point);
+    });
+    this.modelSub = orderService.modelId$.subscribe(
+      id => {
+        if(id) {
+          this.modelId = id;
+        }
     });
   }
 

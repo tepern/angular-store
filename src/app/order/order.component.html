@@ -22,10 +22,10 @@
   </div> 
   <div [ngSwitch]="tab">
     <ng-template ngSwitchCase="location">
-      <app-location></app-location>
+      <app-location (tab)="tabs($event)"></app-location>
     </ng-template> 
     <ng-template ngSwitchCase="model">
-      <app-model></app-model>
+      <app-model (tab)="tabs($event)"></app-model>
     </ng-template>
     <ng-template ngSwitchCase="comment">
       <app-details></app-details>
