@@ -9,7 +9,7 @@ import { HttpService } from "../../http.service";
 })
 export class RateComponent implements OnInit {
 
-  carRate: string = '';
+  carRate: Rate | null = null;
   rates: Rate[] = [];
 
   constructor(public httpService: HttpService) {}
@@ -21,10 +21,12 @@ export class RateComponent implements OnInit {
     });
   }
 
-  @Output() rateId = new EventEmitter<string>();
+  @Output() rateId = new EventEmitter<Rate>();
 
   onRateChange() {
-    this.rateId.emit(this.carRate);
+    if(this.carRate) {
+      this.rateId.emit(this.carRate);
+    }
   }
 
 }

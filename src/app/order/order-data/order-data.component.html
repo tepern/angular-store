@@ -11,10 +11,10 @@
       <span>......................</span>
       <div class="form-control form__text" id="model">{{ carModel.name }}</div>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="color">
       <div class="form-label">Цвет</div>
       <span>......................</span>
-      <div class="form-control form__text" id="color">Голубой</div>
+      <div class="form-control form__text" id="color">{{ color }}</div>
     </div>
     <div class="form-group">
       <div class="form-label">Дительность аренды</div>
