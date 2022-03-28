@@ -8,7 +8,7 @@
     <div class="search-err text" *ngIf="errCity">{{ errCity }}</div>
     <div class="form-group">
       <label class="form-label">Пункт выдачи</label>
-      <input type="search" class="form-control" placeholder="Начните вводить пункт ..." name="search" [(ngModel)]="textSearch" #searchPoint="ngModel" (ngModelChange)="onPointSearch()"/>
+      <input type="text" class="form-control" placeholder="Начните вводить пункт ..." name="search" [(ngModel)]="textSearch" #searchPoint="ngModel" (ngModelChange)="onPointSearch()" [disabled]="!city"/>
       <button class="form-reset" *ngIf="textSearch" (click)="reset(searchPoint)"></button>
       <div class="search-err text" *ngIf="errPoint">{{ errPoint }}</div>
     </div>

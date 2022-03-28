@@ -16,6 +16,7 @@ export class MapComponent implements OnInit {
   map: ymaps.Map | null = null;
   textSearch: string | null = null;
   city: string | null = null; 
+  cities: City[] = [];
   points: Point[] = [];
   public errCity: string | null = null;
   public errPoint: string | null = null;
@@ -28,6 +29,9 @@ export class MapComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.httpService.getCity().subscribe((data: City[]) => {
+      this.cities = data;
+    });
     this.httpService.getPoint().subscribe((data: Point[]) => {
       this.points = data;
     });
@@ -74,7 +78,11 @@ export class MapComponent implements OnInit {
       const city = this.city;
       const textSearch = this.textSearch;
       const pointsFilter = points.filter(function(point) {
-        return (point.cityId && point.name.indexOf(textSearch)>-1 || point.cityId && point.address.indexOf(textSearch)>-1);
+        if(city) {
+          return (point.cityId && point.name.indexOf(textSearch)>-1 && point.cityId.name.indexOf(city)>-1 || point.cityId && point.address.indexOf(textSearch)>-1 && point.cityId.name.indexOf(city)>-1);
+        } else {
+          return (point.cityId && point.name.indexOf(textSearch)>-1 || point.cityId && point.address.indexOf(textSearch)>-1);
+        }
       });
       if(pointsFilter.length==0) {
         this.errPoint = "Ничего не найдено";
@@ -161,17 +169,18 @@ export class MapComponent implements OnInit {
 
           firstGeoObject.options.set({
             iconLayout: 'default#image',
-            iconImageHref: '/assets/images/icons/placemark.svg',
+            iconImageHref: 'assets/images/icons/placemark.svg',
             iconImageSize: [18, 18],
           });
 
           firstGeoObject.events.add('click', (event: ymaps.Event) => {
-            const address = firstGeoObject.properties.get('name')
+            const address = firstGeoObject.properties.get('name');
             this.textSearch = address;
             const elem = document.getElementsByName('search')[0]; 
             elem.setAttribute('value', address);
             elem.dispatchEvent(new Event("focus"));
             elem.dispatchEvent(new Event("blur"));
+            this.city = currentCity;
             this.location();
           })
 
