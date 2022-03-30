@@ -19,19 +19,33 @@ export class HttpService {
   constructor(private http: HttpClient) {
   }
 
-  getCarsModels(page: number, limit: number):Observable<CarModel[]> {
+  getCarsModels(page: number, limit: number, filter?: string):Observable<CarModel[]> {
 
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
 
     return this.http.get<CarModel[]>('http://localhost:4200/api/db/car?page=' + (page-1) + '&limit=' + limit, {headers: apiHeaders})
     .pipe(map((data:any) => {
-      return data["data"];
+      const carModels = data["data"];
+      if(filter && filter!="Все модели") {
+        const models = carModels.filter((item: CarModel) => {
+          return (item.categoryId.name.indexOf(filter)>-1 || item.categoryId.name.indexOf(filter.toLowerCase())>-1);
+        });
+        return models;
+      } else {
+        return carModels;
+      }
+      
     }))
     .pipe(catchError(this.handleError.bind(this)));      
   }
 
   private handleError(errors: HttpErrorResponse) {
-    const {message, error} = errors;
+    const { error } = errors;
+
+    if (error) {
+      this.error$.next(error);
+    } 
+
     return throwError(errors);
   }
 

@@ -15,6 +15,11 @@
           </div>
         </a>  
       </div>
+       <div class="alert alert-danger" *ngIf="httpService.error$ | async as errors">
+          <p> 
+             Не удалось загрузить данные
+          </p>   
+        </div>
       <div class="model-pagination" *ngIf="carModel == 'Все модели' && pagination.loadingVar">
         <app-pagination
           [count]="pagination.countVar"

@@ -5,7 +5,7 @@ import { HttpService } from "../http.service";
 import { OrderService } from "../order.service";
 import { CarModel } from "./model";
 import { PaginationComponent } from './pagination/pagination.component';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, SubscriptionLike } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { pagination } from "./pagination";
 import { OrderDataComponent } from "../order-data/order-data.component";
@@ -16,7 +16,8 @@ import { OrderDataComponent } from "../order-data/order-data.component";
   styleUrls: ['./model.component.scss']
 })
 export class ModelComponent implements OnInit {
-  public carsModels$: Observable<CarModel[]> = new Observable<CarModel[]>();
+  subscription: SubscriptionLike | null = null;
+  countSub: SubscriptionLike | null = null;
   public model: CarModel[] = [];
   carModel: string = "Все модели";
   pagination = pagination;
@@ -29,8 +30,6 @@ export class ModelComponent implements OnInit {
   ngOnInit(): void {
     this.getModels(pagination.pageVar, pagination.perPageVar);
     this.countModels();
- 
-    this.carsModels$ = this.httpService.getCarsModels(1,0); 
   }
 
   @Output() tab = new EventEmitter<string>();
@@ -40,30 +39,12 @@ export class ModelComponent implements OnInit {
   }
 
   onModelChange(event: string): void {
-    if(this.carModel) {
-    
-      const model = this.model;     
+    if(this.carModel) {    
       const carModel = event;
       this.carModel = event;
-  
-      if (carModel == "Премиум") {
-        this.carsModels$.subscribe((data: CarModel[]) => {
-          this.model = data.filter(function(item) {
-            return item.categoryId.name.indexOf('Люкс')>-1;
-          });
-        });   
-      } else if (carModel == "Эконом") {
-          this.carsModels$.subscribe((data: CarModel[]) => {
-            this.model = data.filter(function(item) {
-              return (item.categoryId.name.indexOf('эконом')>-1 ||  item.categoryId.name.indexOf('Эконом')>-1);
-            });
-          }); 
-      } else if (carModel == "Все модели") {
-          this.getModels(pagination.pageVar, pagination.perPageVar);
-      }
-       
+      this.getModels(1, 0, event);
     } else {
-        this.getModels(pagination.pageVar, pagination.perPageVar);
+      this.getModels(pagination.pageVar, pagination.perPageVar);
     }
   }
 
@@ -90,8 +71,8 @@ export class ModelComponent implements OnInit {
     }
   }
 
-  getModels(page: number, limit: number): void {
-    this.httpService.getCarsModels(page,limit).subscribe(
+  getModels(page: number, limit: number, filter?: string): void {
+    this.subscription = this.httpService.getCarsModels(page,limit,filter).subscribe(
       (data: CarModel[]) => {
         this.model = data; 
       },
@@ -103,7 +84,7 @@ export class ModelComponent implements OnInit {
   }
 
   countModels(): void {
-    this.httpService.getCarsModels(1,0).subscribe((data: CarModel[]) => {
+    this.countSub = this.httpService.getCarsModels(1,0).subscribe((data: CarModel[]) => {
       pagination.countVar = data.length;
     });
   }
@@ -113,6 +94,18 @@ export class ModelComponent implements OnInit {
       this.orderService.getModelId(carModel.id);
       this.id = carModel.id;
       this.orderService.getModel(carModel);
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = null;
+    }
+
+    if (this.countSub) {
+      this.countSub.unsubscribe();
+      this.countSub = null;
     }
   }
 }

@@ -1,7 +1,7 @@
 <div class="car-filter">
   <form id="car-filter" *ngIf="carAllModel && loadingVar">
     <div class="car-filter-group" *ngFor="let item of carAllModel">
-      <input type="radio" id="{{ item.class }}" class="car-filter-control" name="model" [(ngModel)]="carModel" #model="ngModel" (ngModelChange)="onModelChange()" value="{{ item.name }}"/>
+      <input type="radio" id="{{ item.class }}" class="car-filter-control" name="model" [(ngModel)]="carModel" #model="ngModel" (ngModelChange)="onModelChange()" value="{{ item.value }}"/>
       <label class="car-filter__label" for="{{ item.class }}">{{ item.name }}</label>
     </div>
   </form>
