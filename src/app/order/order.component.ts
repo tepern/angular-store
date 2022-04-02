@@ -19,16 +19,7 @@ export class OrderComponent implements OnInit {
   modelSub: Subscription;
 
   constructor(private orderService: OrderService) {
-    this.subscription = orderService.point$.subscribe(
-      point => {
-        this.point = point;
-    });
-    this.modelSub = orderService.modelId$.subscribe(
-      id => {
-        if(id) {
-          this.modelId = id;
-        }
-    });
+    
   }
 
   ngOnInit(): void {

@@ -1,8 +1,8 @@
 interface CarService { 
-  id: string,
-  name: string,
-  price: number,
-  checked: boolean
+  id: string;
+  name: string;
+  price: number;
+  checked: boolean;
 }
 
 export const carAllService: CarService[] = [
