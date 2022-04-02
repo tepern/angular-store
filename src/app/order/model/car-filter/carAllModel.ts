@@ -1,10 +1,12 @@
-interface CarModel { 
+interface CarAllModel { 
   class: string,
   name: string,
   value: string 
 }
 
-export const carAllModel: CarModel[] = [
+enum CAR_MODEL_CLASS { ALL = 'all', ECONOM = 'econom', PREMIUM = 'premium' };
+
+export const carAllModel: CarAllModel[] = [
   {
     'class': 'all',
     'name': 'Все модели',
@@ -21,3 +23,6 @@ export const carAllModel: CarModel[] = [
     'value': 'Люкс'
   },
 ];
+
+export const defaultCarModel = carAllModel.filter(carModel => carModel.class === CAR_MODEL_CLASS.ALL);
+

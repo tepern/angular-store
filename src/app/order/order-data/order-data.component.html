@@ -16,22 +16,27 @@
       <span>......................</span>
       <div class="form-control form__text" id="color">{{ color }}</div>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="duration">
       <div class="form-label">Дительность аренды</div>
       <span>......</span>
-      <div class="form-control form__text" id="duration">1д 2ч</div>
+      <div class="form-control form__text" id="duration">
+        <span *ngIf="duration.days > 0">{{ duration.days }}д</span>
+        <span *ngIf="(duration.hours - duration.days*24) > 0">{{ duration.hours - duration.days*24 }}ч</span>
+        <span *ngIf="(duration.minutes - duration.hours*60) > 0">{{ duration.minutes - duration.hours*60 }}мин</span>
+      </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="rate">
       <div class="form-label">Тариф</div>
       <span>......................</span>
-      <div class="form-control form__text" id="rate">На сутки</div>
+      <div class="form-control form__text" id="rate">{{ rate.rateTypeId.name }}</div>
     </div>
-    <div class="form-group mb-32">
-      <div class="form-label">Полный бак</div>
-      <span>......................</span>
-      <div class="form-control form__text" id="fullTank">Да</div>
+    <div class="form-group mb-32" *ngFor="let service of services">
+      <div class="form-label" *ngIf="service.checked">{{ service.name }}</div>
+      <span *ngIf="service.checked">......................</span>
+      <div class="form-control form__text" *ngIf="service.checked">Да</div>  
     </div>
     <p class="strong mb-32" *ngIf="!carModel">Цена: от 8 000 до 12 000 ₽</p>
-    <p class="strong mb-32" *ngIf="modelId.length>0 && carModel">Цена: от {{ carModel.priceMin }} до {{ carModel.priceMax }} ₽</p>
+    <p class="strong mb-32" *ngIf="modelId.length>0 && carModel && cost=='0'">Цена: от {{ carModel.priceMin }} до {{ carModel.priceMax }} ₽</p>
+    <p class="strong mb-32" *ngIf="cost !== '0'">Цена: {{ cost }} ₽</p>
   </div>
 </div>

@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class HttpService {
-  public error$: Subject<HttpErrorResponse> = new Subject<HttpErrorResponse>();
+  public error$: Subject<string> = new Subject<string>();
 
   constructor(private http: HttpClient) {
   }
@@ -40,11 +40,13 @@ export class HttpService {
   }
 
   private handleError(errors: HttpErrorResponse) {
-    const { error } = errors;
+    const { error, message } = errors;
 
     if (error) {
-      this.error$.next(error);
-    } 
+      this.error$.next('Не удалось загрузить данные');
+    } else if (message) {
+      this.error$.next(message);
+    }
 
     return throwError(errors);
   }
@@ -98,6 +100,16 @@ export class HttpService {
     return this.http.get<Point[]>('http://localhost:4200/api/db/point', {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
+    }))
+    .pipe(catchError(this.handleError.bind(this)));
+  }
+
+  getCarCount():Observable<number> {
+    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
+
+    return this.http.get<number>('http://localhost:4200/api/db/car', {headers: apiHeaders})
+    .pipe(map((data:any) => {
+      return data["count"];
     }))
     .pipe(catchError(this.handleError.bind(this)));
   }

@@ -28,7 +28,7 @@
       <app-model (tab)="tabs($event)"></app-model>
     </ng-template>
     <ng-template ngSwitchCase="comment">
-      <app-details></app-details>
+      <app-details (tab)="tabs($event)"></app-details>
     </ng-template>
     <ng-template ngSwitchCase="total">
       <app-total></app-total>

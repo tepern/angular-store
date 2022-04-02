@@ -1,5 +1,9 @@
 @import "../../style/common.scss";
 
+h4, .h4 {
+  text-align: right;
+}
+
 .form {
   display: inline-block;
 
@@ -62,5 +66,9 @@
     max-width: 101px;
     border: none;
     color: $gray;
+
+    span {
+      color: $gray;
+    }
   }
 }

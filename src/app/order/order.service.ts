@@ -3,6 +3,7 @@ import { Subject, Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { CarModel } from "./model/model";
 import { Rate } from './details/rate/rate';
+import { Duration } from './order-data/duration';
 import { CarService } from "./details/car-service/car-service";
 
 @Injectable({
@@ -25,6 +26,10 @@ export class OrderService {
   public service$: BehaviorSubject<CarService[]> = new BehaviorSubject<CarService[]>([]);
 
   public rate$: BehaviorSubject<Rate | null> = new BehaviorSubject<Rate | null>(null);
+
+  public duration$: BehaviorSubject<Duration | null> = new BehaviorSubject<Duration | null>(null);
+
+  public cost$: BehaviorSubject<number | bigint | null> = new BehaviorSubject<number | bigint | null>(null);
 
   constructor() { }
 
@@ -58,5 +63,13 @@ export class OrderService {
 
   getRate(rate: Rate) {
     this.rate$.next(rate);
+  }
+
+  getDuration(duration: Duration) {
+    this.duration$.next(duration);
+  }
+
+  getCost(cost: number | bigint) {
+    this.cost$.next(cost);
   }
 }

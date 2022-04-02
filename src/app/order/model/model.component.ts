@@ -9,6 +9,7 @@ import { Observable, Subject, Subscription, SubscriptionLike } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { pagination } from "./pagination";
 import { OrderDataComponent } from "../order-data/order-data.component";
+import { defaultCarModel, carAllModel } from "./car-filter/carAllModel";
 
 @Component({
   selector: 'app-model',
@@ -19,12 +20,12 @@ export class ModelComponent implements OnInit {
   subscription: SubscriptionLike | null = null;
   countSub: SubscriptionLike | null = null;
   public model: CarModel[] = [];
-  carModel: string = "Все модели";
+  carModel: string = defaultCarModel[0].name;
   pagination = pagination;
   id: string = '';
 
   constructor(public httpService: HttpService, private orderService: OrderService) {
-  
+   
   }
 
   ngOnInit(): void {
@@ -84,8 +85,8 @@ export class ModelComponent implements OnInit {
   }
 
   countModels(): void {
-    this.countSub = this.httpService.getCarsModels(1,0).subscribe((data: CarModel[]) => {
-      pagination.countVar = data.length;
+    this.countSub = this.httpService.getCarCount().subscribe((data: number) => {
+      pagination.countVar = data;
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Rate } from './rate';
 import { HttpService } from "../../http.service";
 
@@ -9,14 +10,16 @@ import { HttpService } from "../../http.service";
 })
 export class RateComponent implements OnInit {
 
-  carRate: Rate | null = null;
+  carRate: string | null = null;
+  currentRate: Rate | null = null;
   rates: Rate[] = [];
+  subscription: Subscription = new Subscription();
 
   constructor(public httpService: HttpService) {}
 
   ngOnInit(): void {
 
-    this.httpService.getRates().subscribe((data: Rate[]) => {
+    this.subscription = this.httpService.getRates().subscribe((data: Rate[]) => {
       this.rates = data;
     });
   }
@@ -25,8 +28,20 @@ export class RateComponent implements OnInit {
 
   onRateChange() {
     if(this.carRate) {
-      this.rateId.emit(this.carRate);
-    }
+      this.subscription = this.httpService.getRate(this.carRate).subscribe((data: Rate) => {
+        this.currentRate = data;
+      },
+      err => console.error(err),
+      () => {
+        if(this.currentRate) {
+          this.rateId.emit(this.currentRate);
+        }
+      });
+    }  
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }
