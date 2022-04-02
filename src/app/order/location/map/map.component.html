@@ -2,18 +2,19 @@
   <form id="search-form" #searchForm="ngForm">
     <div class="form-group">
       <label class="form-label">Город</label>
-      <input type="text" class="form-control" name="city" [(ngModel)]="city" value="Ульяновск"/>
-      <button class="form-reset" (click)="reset(searchForm)"></button>
+      <input type="text" class="form-control" name="city" [(ngModel)]="city" #search="ngModel" (ngModelChange)="onCitySearch()"/>
+      <button class="form-reset" *ngIf="city" (click)="reset(search)"></button>
     </div>
+    <div class="search-err text" *ngIf="errCity">{{ errCity }}</div>
     <div class="form-group">
       <label class="form-label">Пункт выдачи</label>
-      <input type="search" class="form-control" placeholder="Начните вводить пункт ..." name="search" [(ngModel)]="textSearch" #search="ngModel" (ngModelChange)="onSearchChange()"/>
+      <input type="search" class="form-control" placeholder="Начните вводить пункт ..." name="search" [(ngModel)]="textSearch" #searchPoint="ngModel" (ngModelChange)="onPointSearch()"/>
+      <button class="form-reset" *ngIf="textSearch" (click)="reset(searchPoint)"></button>
+      <div class="search-err text" *ngIf="errPoint">{{ errPoint }}</div>
     </div>
   </form>    
 </div>
 <div class="map-wrap">
-  <p class="text">Выбрать на карте:</p>
-  <div class="map" id="map">
-    <img src="assets/images/map.png" alt="">
-  </div>
+  <ya-map #map [center]="[55.751952, 37.600739]" [zoom]="12" (ready)="onMapReady($event)">
+  </ya-map>
 </div>

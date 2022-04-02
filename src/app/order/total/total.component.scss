@@ -113,10 +113,8 @@
   }
 
   &-right {
-    width: 319px;
     padding-top: 32px;
     padding-left: 32px;
-    padding-top: 32px;
     padding-bottom: 160px;
     flex-basis: 319px;
     border-left: 1px solid #EEEEEE;
@@ -128,6 +126,7 @@
       padding-bottom: 100px;
       flex-basis: 100%;
       text-align: center;
+      border-left: none;
     }
 
     @media (max-width: $big-mobile_width) {
