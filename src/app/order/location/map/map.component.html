@@ -1,9 +1,9 @@
 <div class="form">
-  <form id="search-form">
+  <form id="search-form" #searchForm="ngForm">
     <div class="form-group">
       <label class="form-label">Город</label>
       <input type="text" class="form-control" name="city" [(ngModel)]="city" value="Ульяновск"/>
-      <button class="form-reset"></button>
+      <button class="form-reset" (click)="reset(searchForm)"></button>
     </div>
     <div class="form-group">
       <label class="form-label">Пункт выдачи</label>

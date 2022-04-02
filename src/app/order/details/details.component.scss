@@ -1,0 +1,134 @@
+@import "../../style/common.scss";
+
+.container {
+  width: $container_width;
+}
+
+.form {
+  display: inline-block;
+
+  &-right {
+    display: block;
+    margin-top: 26px;
+
+    &__btn {
+      width: 287px;
+      height: 48px;
+    }
+
+    span {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 16px;
+      text-align: left;
+    }
+  }
+
+  &-group {
+    position: relative;
+    display: flex;
+    margin-bottom: 16px;
+    text-align: right;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    @media (max-width: $tablet-min_width) {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  &-label {
+    margin-right: 7px;
+    font-size: 14px;
+    line-height: 16px;
+    color: $base;
+  }
+
+  &-control {
+    max-width: 224px;
+    padding: 0px 7px;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: right;
+    color: $base;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid $gray;
+  }
+
+  &__text {
+    max-width: 101px;
+    border: none;
+    color: $gray;
+  }
+}
+
+.details {
+  
+  &-container {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: $tablet-min_width) {
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: $tablet-min_width) and (min-width: $big-mobile-min_width) {
+      padding-left: 64px;
+    }
+  }
+
+  &-left {
+    margin-top: 32px;
+    margin-right: 32px;
+    padding-top: 32px;
+    padding-bottom: 160px;
+
+    @media (max-width: $tablet-min_width) {
+      padding-bottom: 100px;
+    }
+
+    @media (max-width: $big-mobile_width) {
+      margin-right: 0px;
+    }
+  }
+
+  &-right {
+    width: 319px;
+    padding-top: 32px;
+    padding-left: 32px;
+    padding-bottom: 160px;
+    flex-basis: 319px;
+    border-left: 1px solid #EEEEEE;
+
+    @media (max-width: $tablet-min_width) {
+      width: 100%;
+      margin-bottom: 100px;
+      padding-left: 0px;
+      padding-bottom: 100px;
+      flex-basis: 100%;
+    }
+
+    @media (max-width: $big-mobile_width) {
+      border-left: none;
+    }
+
+    &__title {
+      text-align: right;
+
+      @media (max-width: $tablet-min_width) {
+        text-align: center;
+      }
+    }
+
+    .strong {
+
+      @media (max-width: $tablet-min_width) {
+        text-align: center;
+      }
+    }
+  }
+}

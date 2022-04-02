@@ -1,0 +1,9 @@
+<div class="car-service">
+  <p class="car-service__title">Доп услуги</p>
+  <form id="car-service" *ngIf="carAllService">
+    <div class="car-service-group" *ngFor="let service of carService">
+      <input type="checkbox" id="{{ service.id }}" class="car-service-control" name="{{ service.checked }}" [(ngModel)]="service.checked" #{{service.checked}}="ngModel" (ngModelChange)="onServiceChange()" value="{{ service.name }}" [checked]="service.checked"/>
+      <label class="car-service__label" for="{{ service.id }}">{{ service.name }},  {{ service.price }}р</label>
+    </div>
+  </form>
+</div>

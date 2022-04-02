@@ -1,0 +1,60 @@
+@import "../../../style/common.scss";
+
+.car {
+  
+  &-service {
+    margin-bottom: 48px;
+
+    &__title {
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 16px;
+      color: $base;
+    }
+
+    &-group {
+      display: block;
+    }
+
+    &-control {
+      position: absolute;
+      opacity: 0;
+
+      &:checked {
+
+        &+label {
+          color: $base; 
+
+          &::before {
+            border: 1px solid $green;
+            background-image: url(~src/assets/images/icons/checked.svg); 
+          } 
+        }
+      }
+    }
+
+    &__label {
+      position: relative;
+      padding-left: 20px;
+      font-size: 14px;
+      line-height: 16px;
+      color: $gray;
+
+      &#{&} {
+        margin-right: 16px;
+      }
+
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 12px;
+        height: 12px;
+        content: "";
+        border: 1px solid $gray;
+        box-sizing: border-box;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}

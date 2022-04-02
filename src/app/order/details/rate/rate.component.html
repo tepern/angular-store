@@ -1,0 +1,9 @@
+<div class="rate">
+  <p class="rate__title">Тариф</p>
+  <form id="rate" *ngIf="rates">
+    <div class="rate-group" *ngFor="let rate of rates">
+      <input type="radio" [ngClass]="{hidden:rate.rateTypeId===undefined}" id="{{ rate.id }}" class="rate-control" name="rate" [(ngModel)]="carRate" #rate="ngModel" (ngModelChange)="onRateChange()" value="{{ rate.id }}"/>
+      <label class="rate__label" *ngIf="rate.rateTypeId" for="{{ rate.id }}">{{ rate.rateTypeId.name + ', ' + rate.price + ' ₽/' + rate.rateTypeId.unit }}</label>
+    </div>
+  </form>
+</div>

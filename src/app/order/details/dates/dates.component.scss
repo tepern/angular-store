@@ -1,0 +1,47 @@
+@import "../../../style/common.scss";
+
+.date {
+  margin-bottom: 48px;
+
+  &__title {
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 16px;
+    color: $base;
+  }
+
+  &-group {
+    position: relative;
+    margin-bottom: 16px;
+    text-align: right;
+  }
+
+  &-control {
+    width: 224px;
+    height: 22px;
+    margin-left: 8px;
+    padding: 3px 16px 3px 8px;
+    border: none;
+    border-bottom: 1px solid $gray;
+    font-size: 14px;
+    line-height: 16px;
+    color: $base;
+    box-sizing: border-box;
+  }
+
+  &__label {
+    font-size: 14px;
+    line-height: 16px;
+    color: $gray;
+  }
+
+  &-reset {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    right: 5px;
+    bottom: 6px;
+    border: none;
+    background: url(~src/assets/images/icons/reset.svg) no-repeat;
+  }
+}

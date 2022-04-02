@@ -1,0 +1,57 @@
+@import "../../../style/common.scss";
+
+.color {
+  margin-bottom: 48px;
+
+  &__title {
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 16px;
+    color: $base;
+  }
+
+  &-group {
+    display: inline-block;
+  }
+
+  &-control {
+    position: absolute;
+    opacity: 0;
+
+    &:checked {
+
+      &+label {
+        color: $base; 
+
+        &::before {
+          border: 3px solid $green;
+        } 
+      }
+    }
+  }
+
+  &__label {
+    position: relative;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 16px;
+    color: $gray;
+
+    &#{&} {
+      margin-right: 16px;
+    }
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      content: "";
+      border-radius: 50%;
+      border: 1px solid $gray;
+      box-sizing: border-box;
+      transform: translateY(-50%);
+    }
+  }
+}
