@@ -29,6 +29,7 @@ import { RateComponent } from './order/details/rate/rate.component';
 import { CarServiceComponent } from './order/details/car-service/car-service.component';
 import { TotalComponent } from './order/total/total.component';
 import { OrderDataComponent } from './order/order-data/order-data.component';
+import { CostPipe } from './order/cost.pipe';
 
 const mapConfig: YaConfig = {
   apikey: '215898fb-7ea4-4f2a-97e4-e0e1f172c5c5',
@@ -57,6 +58,7 @@ const mapConfig: YaConfig = {
     CarServiceComponent,
     TotalComponent,
     OrderDataComponent,
+    CostPipe,
   ],
   imports: [
     BrowserModule,

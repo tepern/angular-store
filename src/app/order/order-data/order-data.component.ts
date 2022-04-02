@@ -6,6 +6,7 @@ import { CarModel } from "../model/model";
 import { CarService } from "../details/car-service/car-service";
 import { Rate } from '../details/rate/rate';
 import { Duration } from './duration';
+import { CostPipe } from '../cost.pipe';
 
 @Component({
   selector: 'app-order-data',
@@ -30,8 +31,6 @@ export class OrderDataComponent implements OnInit{
   end: Date | null = null;
   services: CarService[] = [];
   rate: Rate | null = null;
-  //duration: Duration | null = null;
- // cost: number | bigint | null = null;
 
   constructor(private orderService: OrderService, public httpService: HttpService) {
     this.subscription = orderService.point$.subscribe(
@@ -93,7 +92,7 @@ export class OrderDataComponent implements OnInit{
   }
 
   public get cost() {
-    return new Intl.NumberFormat().format(Number(this.getCost()));
+    return this.getCost();
   }
 
   getDuration(): Duration | null {
