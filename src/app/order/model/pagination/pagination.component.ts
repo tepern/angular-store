@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { pagination } from "../pagination";
 
 @Component({
   selector: 'app-pagination',
@@ -7,10 +8,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PaginationComponent {
 
-  @Input() page: number = 1;
-  @Input() count: number = 85;
-  @Input() perPage: number = 20;
-  @Input() pageToShow: number = 5;
+  @Input() page: number = pagination.pageVar;
+  @Input() count: number = pagination.countVar;
+  @Input() perPage: number = pagination.perPageVar;
+  @Input() pageToShow: number = pagination.pagesToShow;
   @Input() loading: boolean = false;
 
   @Output() goPrev = new EventEmitter<boolean>();
@@ -37,8 +38,8 @@ export class PaginationComponent {
 
   getPages(): number[] {
     const c = Math.ceil(this.count / this.perPage);
-    const p = this.page || 1;
-    const pagesToShow = this.pageToShow || 9;
+    const p = this.page || pagination.pageVar;
+    const pagesToShow = this.pageToShow || pagination.pagesToShow;
     const pages: number[] = [];
     pages.push(p);
     const times = pagesToShow - 1;

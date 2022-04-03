@@ -8,7 +8,7 @@
     </div>
     <div class="date-group">
       <label class="date__label" for="end">По</label>
-      <input type="text" id="end" class="date-control" name="end" [(ngModel)]="endDate" [ngModel]="endDate" #end="ngModel" (ngModelChange)="onEndDateChange()" placeholder="Введите дату и время" onfocus="(this.type='datetime-local')" onblur="(this.type='text')"/>
+      <input type="text" id="end" class="date-control" name="end" [(ngModel)]="endDate" [ngModel]="endDate" #end="ngModel" (ngModelChange)="onEndDateChange()" placeholder="Введите дату и время" onfocus="(this.type='datetime-local')"/>
       <button class="date-reset" *ngIf="endDate" (click)="reset(end,'end')"></button>
     </div>
   </form>

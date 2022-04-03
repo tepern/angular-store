@@ -1,5 +1,13 @@
 @import "../../style/common.scss";
 
+h4, .h4 {
+  text-align: right;
+
+  @media (max-width: $tablet-min_width) {
+    text-align: center;
+  }
+}
+
 .form {
   display: inline-block;
 
@@ -62,5 +70,9 @@
     max-width: 101px;
     border: none;
     color: $gray;
+
+    span {
+      color: $gray;
+    }
   }
 }

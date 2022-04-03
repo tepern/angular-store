@@ -72,8 +72,6 @@
 }
 
 .location {
-  padding-top: 32px;
-  padding-bottom: 160px;
 
   @media (max-width: $tablet-min_width) {
     padding-bottom: 100px;
@@ -94,8 +92,13 @@
 
   &-left {
     max-width: 100%;
-    margin-top: 32px;
     margin-right: 32px;
+    padding-top: 32px;
+    padding-bottom: 160px;
+
+    @media (max-width: $tablet-min_width) {
+      padding-bottom: 100px;
+    }
 
     @media (max-width: $big-mobile_width) {
       margin-right: 0px;
@@ -106,7 +109,9 @@
     width: 319px;
     padding-top: 32px;
     padding-left: 32px;
+    padding-bottom: 160px;
     flex-basis: 319px;
+    border-left: 1px solid #EEEEEE;
 
     @media (max-width: $tablet-min_width) {
       width: 100%;
@@ -115,6 +120,7 @@
       padding-bottom: 100px;
       flex-basis: 100%;
       text-align: center;
+      border-left: none;
     }
 
     &__title {

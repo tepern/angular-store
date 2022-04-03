@@ -14,24 +14,40 @@ import { environment } from 'src/environments/environment';
 })
 
 export class HttpService {
-  public error$: Subject<HttpErrorResponse> = new Subject<HttpErrorResponse>();
+  public error$: Subject<string> = new Subject<string>();
 
   constructor(private http: HttpClient) {
   }
 
-  getCarsModels(page: number, limit: number):Observable<CarModel[]> {
+  getCarsModels(page: number, limit: number, filter?: string):Observable<CarModel[]> {
 
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
 
     return this.http.get<CarModel[]>('http://localhost:4200/api/db/car?page=' + (page-1) + '&limit=' + limit, {headers: apiHeaders})
     .pipe(map((data:any) => {
-      return data["data"];
+      const carModels = data["data"];
+      if(filter && filter!="Все модели") {
+        const models = carModels.filter((item: CarModel) => {
+          return (item.categoryId.name.indexOf(filter)>-1 || item.categoryId.name.indexOf(filter.toLowerCase())>-1);
+        });
+        return models;
+      } else {
+        return carModels;
+      }
+      
     }))
     .pipe(catchError(this.handleError.bind(this)));      
   }
 
   private handleError(errors: HttpErrorResponse) {
-    const {message, error} = errors;
+    const { error, message } = errors;
+
+    if (error) {
+      this.error$.next('Не удалось загрузить данные');
+    } else if (message) {
+      this.error$.next(message);
+    }
+
     return throwError(errors);
   }
 
@@ -84,6 +100,16 @@ export class HttpService {
     return this.http.get<Point[]>('http://localhost:4200/api/db/point', {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
+    }))
+    .pipe(catchError(this.handleError.bind(this)));
+  }
+
+  getCarCount():Observable<number> {
+    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
+
+    return this.http.get<number>('http://localhost:4200/api/db/car', {headers: apiHeaders})
+    .pipe(map((data:any) => {
+      return data["count"];
     }))
     .pipe(catchError(this.handleError.bind(this)));
   }
