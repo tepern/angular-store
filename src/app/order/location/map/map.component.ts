@@ -4,6 +4,7 @@ import { NgForm } from "@angular/forms";
 import { City } from '../city';
 import { Point } from '../point';
 import { HttpService } from "../../http.service";
+import { OrderService } from "../../order.service";
 import { YaReadyEvent, YaGeocoderService } from 'angular8-yandex-maps';
 
 @Component({
@@ -22,7 +23,8 @@ export class MapComponent implements OnInit {
 
   constructor(
     public httpService: HttpService, 
-    public yaGeocoderService: YaGeocoderService
+    public yaGeocoderService: YaGeocoderService,
+    private orderService: OrderService
   ) { }
 
   ngOnInit(): void {
@@ -164,13 +166,13 @@ export class MapComponent implements OnInit {
           });
 
           firstGeoObject.events.add('click', (event: ymaps.Event) => {
-            console.log(firstGeoObject.properties.get('name'));
             const address = firstGeoObject.properties.get('name')
             this.textSearch = address;
             const elem = document.getElementsByName('search')[0]; 
             elem.setAttribute('value', address);
             elem.dispatchEvent(new Event("focus"));
             elem.dispatchEvent(new Event("blur"));
+            this.location();
           })
 
           map.geoObjects.add(firstGeoObject);
@@ -181,5 +183,12 @@ export class MapComponent implements OnInit {
         });
       }
     });
+  }
+  
+  location() {
+    if(this.city && this.textSearch) {
+      const point = this.city + ', ' + this.textSearch;
+      this.orderService.getPoint(point);
+    }
   }
 }

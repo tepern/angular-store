@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { NgModel} from '@angular/forms';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { MapComponent } from './map/map.component';
+import { OrderDataComponent } from "../order-data/order-data.component";
+import { OrderService } from "../order.service";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-location',
@@ -9,17 +12,25 @@ import { MapComponent } from './map/map.component';
   styleUrls: ['./location.component.scss']
 })
 export class LocationComponent {
-  form: FormGroup;
+  
+  subscription: Subscription;
+  point: string | null = null;
 
-  constructor() {
-    this.form = new FormGroup({
-      point: new FormControl('', Validators.required),
-    })
+  constructor(private orderService: OrderService) {
+    this.subscription = orderService.point$.subscribe(
+      point => {
+        this.point = point;
+    });
   }
 
-  submit() {
-    const formData = {...this.form.value};
-    this.form.reset();
+  @Output() tab = new EventEmitter<string>();
+
+  nextTab(tab: string) {
+    this.tab.emit(tab);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

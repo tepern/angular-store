@@ -6,10 +6,10 @@
     <div class="container">
       <ul class="order-nav-list">
         <li class="order-nav__item">
-          <a class="order-nav__link" [ngClass]="{active: tab == 'location'}" (click)="tabs('location')">Местоположение</a>
+          <a class="order-nav__link" [ngClass]="{active: tab == 'location', available: 'point'}" (click)="tabs('location')">Местоположение</a>
         </li>
         <li class="order-nav__item">
-          <a class="order-nav__link" [ngClass]="{active: tab == 'model'}" (click)="tabs('model')">Модель</a>
+          <a class="order-nav__link" [ngClass]="{active: tab == 'model', available: 'point'}" (click)="tabs('model')">Модель</a>
         </li>
         <li class="order-nav__item">
           <a class="order-nav__link" [ngClass]="{active: tab == 'comment'}" (click)="tabs('comment')">Дополнительно</a>
@@ -22,10 +22,10 @@
   </div> 
   <div [ngSwitch]="tab">
     <ng-template ngSwitchCase="location">
-      <app-location></app-location>
+      <app-location (tab)="tabs($event)"></app-location>
     </ng-template> 
     <ng-template ngSwitchCase="model">
-      <app-model></app-model>
+      <app-model (tab)="tabs($event)"></app-model>
     </ng-template>
     <ng-template ngSwitchCase="comment">
       <app-details></app-details>

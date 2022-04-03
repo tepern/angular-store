@@ -1,0 +1,66 @@
+@import "../../style/common.scss";
+
+.form {
+  display: inline-block;
+
+  &-right {
+    display: block;
+    margin-top: 26px;
+
+    @media (max-width: $tablet-min_width) {
+      display: inline-block;
+    }
+
+    &__btn {
+      width: 287px;
+      height: 48px;
+    }
+
+    span {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 16px;
+      text-align: left;
+    }
+  }
+
+  &-group {
+    position: relative;
+    display: flex;
+    margin-bottom: 16px;
+    text-align: right;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    @media (max-width: $tablet-min_width) {
+      text-align: left;
+    }
+  }
+
+  &-label {
+    margin-right: 7px;
+    font-size: 14px;
+    line-height: 16px;
+    color: $base;
+  }
+
+  &-control {
+    max-width: 224px;
+    padding: 0px 7px;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: right;
+    color: $base;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid $gray;
+  }
+
+  &__text {
+    max-width: 101px;
+    border: none;
+    color: $gray;
+  }
+}

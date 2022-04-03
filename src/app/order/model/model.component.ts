@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgModel} from '@angular/forms';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { HttpService } from "../http.service";
+import { OrderService } from "../order.service";
 import { CarModel } from "./model";
 import { PaginationComponent } from './pagination/pagination.component';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { pagination } from "./pagination";
+import { OrderDataComponent } from "../order-data/order-data.component";
 
 @Component({
   selector: 'app-model',
@@ -16,15 +18,12 @@ import { pagination } from "./pagination";
 export class ModelComponent implements OnInit {
   public carsModels$: Observable<CarModel[]> = new Observable<CarModel[]>();
   public model: CarModel[] = [];
-  form: FormGroup;
   carModel: string = "Все модели";
   pagination = pagination;
+  id: string = '';
 
-  constructor(public httpService: HttpService) {
-    this.form = new FormGroup({
-      point: new FormControl('', Validators.required),
-      model: new FormControl('Hyndai, i30 N', Validators.required),
-    })
+  constructor(public httpService: HttpService, private orderService: OrderService) {
+  
   }
 
   ngOnInit(): void {
@@ -34,9 +33,10 @@ export class ModelComponent implements OnInit {
     this.carsModels$ = this.httpService.getCarsModels(1,0); 
   }
 
-  submit() {
-    const formData = {...this.form.value};
-    this.form.reset();
+  @Output() tab = new EventEmitter<string>();
+
+  nextTab(tab: string) {
+    this.tab.emit(tab);
   }
 
   onModelChange(event: string): void {
@@ -106,5 +106,13 @@ export class ModelComponent implements OnInit {
     this.httpService.getCarsModels(1,0).subscribe((data: CarModel[]) => {
       pagination.countVar = data.length;
     });
+  }
+
+  modelId(carModel: CarModel) {
+    if(carModel) {
+      this.orderService.getModelId(carModel.id);
+      this.id = carModel.id;
+      this.orderService.getModel(carModel);
+    }
   }
 }

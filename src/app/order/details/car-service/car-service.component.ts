@@ -15,7 +15,6 @@ export class CarServiceComponent {
   @Output() service = new EventEmitter<CarService[]>();
 
   onServiceChange() {
-    console.log(this.carService);
     this.service.emit(this.carService);
   }
 
