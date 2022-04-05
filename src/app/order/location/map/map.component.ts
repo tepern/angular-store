@@ -181,7 +181,7 @@ export class MapComponent implements OnInit {
             elem.dispatchEvent(new Event("focus"));
             elem.dispatchEvent(new Event("blur"));
             this.city = currentCity;
-            this.location();
+            this.location(point);
           })
 
           map.geoObjects.add(firstGeoObject);
@@ -194,10 +194,16 @@ export class MapComponent implements OnInit {
     });
   }
   
-  location() {
+  location(pointId: Point) {
     if(this.city && this.textSearch) {
       const point = this.city + ', ' + this.textSearch;
+      const cities = this.cities;
+      const cityId = cities.filter((city) => {
+        return (city && city.id == pointId.cityId.id);
+      })
       this.orderService.getPoint(point);
+      this.orderService.getPointId(pointId);
+      this.orderService.getCityId(cityId[0]);
     }
   }
 }

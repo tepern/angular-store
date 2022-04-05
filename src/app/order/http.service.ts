@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError, Subject, from } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { catchError, retry } from 'rxjs/operators';
 import { CarModel } from './model/model';
 import { Rate } from './details/rate/rate';
 import { City } from './location/city';
 import { Point } from './location/point';
+import { Order } from './order';
+import { CarService } from "./details/car-service/car-service";
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,7 +16,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class HttpService {
-  public error$: Subject<string> = new Subject<string>();
+  public error$: Subject<string | string[]> = new Subject<string | string[]>();
 
   constructor(private http: HttpClient) {
   }
@@ -112,5 +114,27 @@ export class HttpService {
       return data["count"];
     }))
     .pipe(catchError(this.handleError.bind(this)));
+  }
+
+  submitOrder(order: Order): Observable<Order>{
+    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey).set('Content-Type', 'application/json');
+
+    return this.http.post<Order>('http://localhost:4200/api/db/order/', { 
+      orderStatusId: order.orderStatusId,
+      cityId: order.cityId,
+      pointId: order.pointId,
+      carId: order.carId,
+      color: order.color,
+      dateFrom: order.dateFrom,
+      dateTo: order.dateTo,
+      rateId: order.rateId,
+      price: order.price,
+      isFullTank: order.isFullTank,
+      isNeedChildChair: order.isNeedChildChair,
+      isRightWheel: order.isRightWheel
+    }, {headers: apiHeaders})
+    .pipe(
+      catchError(this.handleError.bind(this))
+    );  
   }
 }

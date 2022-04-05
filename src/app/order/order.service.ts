@@ -3,6 +3,8 @@ import { Subject, Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { CarModel } from "./model/model";
 import { Rate } from './details/rate/rate';
+import { Point } from './location/point';
+import { City } from './location/city';
 import { Duration } from './order-data/duration';
 import { CarService } from "./details/car-service/car-service";
 
@@ -12,6 +14,10 @@ import { CarService } from "./details/car-service/car-service";
 export class OrderService {
 
   public point$: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+
+  public pointId$: BehaviorSubject<Point | null> = new BehaviorSubject<Point | null>(null);
+
+  public cityId$: BehaviorSubject<City | null> = new BehaviorSubject<City | null>(null);
 
   public modelId$: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
@@ -35,6 +41,14 @@ export class OrderService {
 
   getPoint(point: string) {
     this.point$.next(point);
+  }
+
+  getPointId(point: Point) {
+    this.pointId$.next(point);
+  }
+
+  getCityId(city: City) {
+    this.cityId$.next(city);
   }
 
   getModelId(id: string) {

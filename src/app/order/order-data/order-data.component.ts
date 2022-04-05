@@ -146,6 +146,9 @@ export class OrderDataComponent implements OnInit{
       } else if(cost && cost > 0 && cost > 0 && (cost + servicePrice) < this.carModel.priceMin) {
         fullPrice = this.carModel.priceMin;
       } 
+      if(fullPrice) {
+        this.orderService.getCost(fullPrice);
+      }
 
       return fullPrice;
        

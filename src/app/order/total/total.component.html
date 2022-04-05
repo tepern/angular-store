@@ -4,12 +4,21 @@
       <div class="total-left">
         <div class="total-order mb-32">
           <div class="total-title" *ngIf="carModel">{{ carModel.name }}</div>
-          <div class="total__number" *ngIf="carModel">{{ carModel.number }}</div>
-          <div class="total__detail">Топливо
-            <span>100%</span>
+          <div class="total__number" *ngIf="carModel && carModel.number">{{ carModel.number }}</div>
+          <div *ngIf="services.length>0">
+            <div class="total__detail" *ngIf="services[0] && services[0].checked">
+                Топливо
+              <span>100%</span>  
+            </div>
+          </div>
+          <div class="total__detail" *ngIf="services[1] && services[1].checked"> Детское кресло - 
+            <span>да</span>
+          </div>
+          <div class="total__detail" *ngIf="services[2] && services[2].checked"> Правый руль - 
+            <span>да</span>
           </div>
           <div class="total__detail">Доступна с
-            <span>12.06.2019 12:00</span>
+            <span>{{ start }}</span>
           </div>
         </div>  
         <div class="total__img" *ngIf="carModel" [ngStyle]="{ 'background-image': 'url(' + carModel.thumbnail.path + ') '}"></div>
@@ -18,7 +27,7 @@
         <app-order-data></app-order-data>
         <div class="form form-right">
           <div class="form-group">
-            <button class="btn form-right__btn" [disabled]="">Заказать</button>
+            <button class="btn form-right__btn" [disabled]="" (click)="submitOrder()">Заказать</button>
           </div>
         </div>  
       </div>

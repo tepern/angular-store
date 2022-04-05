@@ -6,7 +6,6 @@ import { HttpService } from "../http.service";
 import { OrderService } from "../order.service";
 import { CarModel } from "../model/model";
 import { Rate } from './rate/rate';
-import { Duration } from '../order-data/duration';
 import { CarService } from "./car-service/car-service";
 import { RateComponent } from './rate/rate.component';
 import { OrderDataComponent } from "../order-data/order-data.component";
@@ -24,7 +23,6 @@ export class DetailsComponent {
   endDate: Date | null = null;
   rate: Rate | null = null;
   services: CarService[] = [];
-  duration: Duration | null = null;
   modelIdSub: Subscription;
 
   constructor(public httpService: HttpService, private orderService: OrderService) {
