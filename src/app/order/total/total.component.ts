@@ -138,7 +138,6 @@ export class TotalComponent implements OnInit {
       this.order = order;
     } 
     
-    console.log(this.order);
     if(this.order) {
       this.httpService.submitOrder(this.order).subscribe(order => {this.order = order});
     }
