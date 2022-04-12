@@ -133,6 +133,21 @@ export class HttpService {
       isNeedChildChair: order.isNeedChildChair,
       isRightWheel: order.isRightWheel
     }, {headers: apiHeaders})
+    .pipe(map((data:any) => {
+      return data["data"];
+    }))
+    .pipe(
+      catchError(this.handleError.bind(this))
+    );  
+  }
+
+  confirmOrder(order: Order): Observable<Order>{
+    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey).set('Content-Type', 'application/json');
+
+    return this.http.post<Order>('http://localhost:4200/api/db/order/', order, {headers: apiHeaders})
+    .pipe(map((data:any) => {
+      return data["data"];
+    }))
     .pipe(
       catchError(this.handleError.bind(this))
     );  

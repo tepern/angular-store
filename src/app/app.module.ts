@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -30,6 +31,7 @@ import { CarServiceComponent } from './order/details/car-service/car-service.com
 import { TotalComponent } from './order/total/total.component';
 import { OrderDataComponent } from './order/order-data/order-data.component';
 import { CostPipe } from './order/cost.pipe';
+import { PopupComponent } from './order/total/popup/popup.component';
 
 const mapConfig: YaConfig = {
   apikey: '215898fb-7ea4-4f2a-97e4-e0e1f172c5c5',
@@ -59,6 +61,7 @@ const mapConfig: YaConfig = {
     TotalComponent,
     OrderDataComponent,
     CostPipe,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +71,7 @@ const mapConfig: YaConfig = {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     AngularYandexMapsModule.forRoot(mapConfig),
   ],
   providers: [HttpService, OrderService],

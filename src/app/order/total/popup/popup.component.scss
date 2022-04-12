@@ -1,0 +1,62 @@
+@import "../../../style/common.scss";
+
+:host {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 10;
+  transition: $transition_all;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transform: translateY(-50%);
+
+  &__title {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: $base;
+  }
+
+  &-btn {
+
+    &-group {
+      text-align: center;
+    }
+  }
+  
+  &__btn {
+    line-height: 48px;
+
+    &_green {
+      width: 177px;
+      margin-right: 16px;
+      background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
+      background-blend-mode: darken;
+      border-radius: 8px;
+
+      @media(max-width: $mobile_width) {
+        width: 140px;
+      }
+    }
+
+     &_purple {
+      width: 164px;
+      background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
+      border-radius: 4px;
+
+      @media(max-width: $mobile_width) {
+        width: 140px;
+      }
+    }
+  }
+}
