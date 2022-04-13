@@ -15,8 +15,6 @@ export class OrderComponent implements OnInit {
   tab: string = 'location';
   point: string | null = null;
   modelId: string = '';
-  subscription: Subscription;
-  modelSub: Subscription;
 
   constructor(private orderService: OrderService) {
     

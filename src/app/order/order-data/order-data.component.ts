@@ -118,13 +118,13 @@ export class OrderDataComponent implements OnInit{
       if(this.duration && this.rate) {
         const price = Number(this.rate.price);
         if(this.rate.rateTypeId.unit.indexOf('30')>-1) {
-          cost = Math.ceil(this.duration.days/30)*price;
+          cost = Math.ceil(this.duration.minutes/60/24/30)*price;
         } else if (this.rate.rateTypeId.unit.indexOf('час')>-1) {
           cost = Math.ceil(this.duration.minutes/60)*price;
         } else if (this.rate.rateTypeId.unit.indexOf('мин')>-1) {
           cost = this.duration.minutes*price;
         } else {
-          const cost = Math.ceil(this.duration.hours/24)*price;
+          const cost = Math.ceil(this.duration.minutes/60/24)*price;
         }
       }
     
@@ -146,6 +146,9 @@ export class OrderDataComponent implements OnInit{
       } else if(cost && cost > 0 && cost > 0 && (cost + servicePrice) < this.carModel.priceMin) {
         fullPrice = this.carModel.priceMin;
       } 
+      if(fullPrice) {
+        this.orderService.getCost(fullPrice);
+      }
 
       return fullPrice;
        
