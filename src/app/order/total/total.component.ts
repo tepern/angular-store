@@ -107,7 +107,10 @@ export class TotalComponent {
     // Convert `PopupComponent` to a custom element.
     const PopupElement = createCustomElement(PopupComponent, {injector});
     // Register the custom element with the browser.
-    customElements.define('popup-element', PopupElement);
+    if (!customElements.get('popup-element')) {
+      customElements.define('popup-element', PopupElement);
+    }
+    
   }
 
   submitOrder(): void {
@@ -165,6 +168,7 @@ export class TotalComponent {
   ngOnDestroy(): void {
     this.modelSub.unsubscribe();
     this.pointSub.unsubscribe();
+    this.citySub.unsubscribe();
     this.colorSub.unsubscribe();
     this.startDateSub.unsubscribe();
     this.endDateSub.unsubscribe();
@@ -172,6 +176,10 @@ export class TotalComponent {
     this.costSub.unsubscribe();
     this.serviceSub.unsubscribe();
     this.submissionSub.unsubscribe();
+    const elem = document.querySelector('popup-element');
+    if(elem) {
+      elem.remove();
+    }
   }
 
 }

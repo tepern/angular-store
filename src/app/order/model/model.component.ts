@@ -19,13 +19,19 @@ import { defaultCarModel, carAllModel } from "./car-filter/carAllModel";
 export class ModelComponent implements OnInit {
   subscription: SubscriptionLike | null = null;
   countSub: SubscriptionLike | null = null;
+  carModelSub: Subscription;
   public model: CarModel[] = [];
   carModel: string = defaultCarModel[0].name;
   pagination = pagination;
   id: string = '';
 
   constructor(public httpService: HttpService, private orderService: OrderService) {
-   
+    this.carModelSub = orderService.modelName$.subscribe(
+      carModel => {
+        if(carModel) {
+          this.id = carModel.id;
+        }
+    });
   }
 
   ngOnInit(): void {
@@ -95,6 +101,12 @@ export class ModelComponent implements OnInit {
       this.orderService.getModelId(carModel.id);
       this.id = carModel.id;
       this.orderService.getModel(carModel);
+      this.orderService.getColor(null);
+      this.orderService.getService([]);
+      this.orderService.getRate(null);
+      this.orderService.getCost(null);
+      this.orderService.getStartDate(null);
+      this.orderService.getEndDate(null);
     }
   }
 
@@ -107,6 +119,10 @@ export class ModelComponent implements OnInit {
     if (this.countSub) {
       this.countSub.unsubscribe();
       this.countSub = null;
+    }
+
+    if (this.carModelSub) {
+      this.carModelSub.unsubscribe();
     }
   }
 }

@@ -37,7 +37,6 @@ export class OrderService {
 
   public cost$: BehaviorSubject<number | bigint | null> = new BehaviorSubject<number | bigint | null>(null);
 
-  constructor() { }
 
   getPoint(point: string) {
     this.point$.next(point);
@@ -59,15 +58,15 @@ export class OrderService {
     this.modelName$.next(carModel);
   }
 
-  getColor(color: string) {
+  getColor(color: string | null) {
     this.color$.next(color);
   }
 
-  getStartDate(start: Date) {
+  getStartDate(start: Date | null) {
     this.start$.next(start);
   }
 
-  getEndDate(end: Date) {
+  getEndDate(end: Date | null) {
     this.end$.next(end);
   }
 
@@ -75,15 +74,15 @@ export class OrderService {
     this.service$.next(services);
   }
 
-  getRate(rate: Rate) {
+  getRate(rate: Rate | null) {
     this.rate$.next(rate);
   }
 
-  getDuration(duration: Duration) {
+  getDuration(duration: Duration | null) {
     this.duration$.next(duration);
   }
 
-  getCost(cost: number | bigint) {
+  getCost(cost: number | bigint | null) {
     this.cost$.next(cost);
   }
 }

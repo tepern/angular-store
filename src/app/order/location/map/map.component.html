@@ -2,7 +2,7 @@
   <form id="search-form" #searchForm="ngForm">
     <div class="form-group">
       <label class="form-label">Город</label>
-      <input type="text" class="form-control" name="city" [(ngModel)]="city" #search="ngModel" (ngModelChange)="onCitySearch()"/>
+      <input type="text" class="form-control" name="city" [(ngModel)]="city" #search="ngModel" (ngModelChange)="onCitySearch()" placeholder="Начните вводить город ..."/>
       <button class="form-reset" *ngIf="city" (click)="reset(search)"></button>
     </div>
     <div class="search-err text" *ngIf="errCity">{{ errCity }}</div>

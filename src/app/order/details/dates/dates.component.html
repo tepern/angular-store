@@ -3,12 +3,12 @@
   <form id="date" #dateForm="ngForm">
     <div class="date-group">  
       <label class="date__label" for="start">С</label>
-      <input type="text" id="start" class="date-control" name="start" [(ngModel)]="startDate" [ngModel]="startDate" #start="ngModel" (ngModelChange)="onStartDateChange()" placeholder="Введите дату и время" onfocus="(this.type='datetime-local')"/>
+      <input [type]="startDate ? 'datetime-local' : 'text'" id="start" class="date-control" name="start" [(ngModel)]="startDate" [ngModel]="startDate" #start="ngModel" (ngModelChange)="onStartDateChange()" placeholder="Введите дату и время" onfocus="(this.type='datetime-local')"/>
       <button class="date-reset" *ngIf="startDate" (click)="reset(start,'start')"></button>
     </div>
     <div class="date-group">
       <label class="date__label" for="end">По</label>
-      <input type="text" id="end" class="date-control" name="end" [(ngModel)]="endDate" [ngModel]="endDate" #end="ngModel" (ngModelChange)="onEndDateChange()" placeholder="Введите дату и время" onfocus="(this.type='datetime-local')"/>
+      <input [type]="endDate ? 'datetime-local' : 'text'" id="end" class="date-control" name="end" [(ngModel)]="endDate" [ngModel]="endDate" #end="ngModel" (ngModelChange)="onEndDateChange()" placeholder="Введите дату и время" onfocus="(this.type='datetime-local')"/>
       <button class="date-reset" *ngIf="endDate" (click)="reset(end,'end')"></button>
     </div>
   </form>

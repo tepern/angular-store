@@ -51,21 +51,15 @@ export class OrderDataComponent implements OnInit{
     });
     this.colorSub = orderService.color$.subscribe(
       color => {
-        if(color) {
-          this.color = color;
-        }
+        this.color = color;
     });
     this.startDateSub = orderService.start$.subscribe(
       start => {
-        if(start) {
-          this.start = start;
-        }
+        this.start = start;
     });
     this.endDateSub = orderService.end$.subscribe(
       end => {
-        if(end) {
-          this.end = end;
-        }
+        this.end = end;
     });
     this.serviceSub = orderService.service$.subscribe(
       services => {
@@ -75,9 +69,7 @@ export class OrderDataComponent implements OnInit{
     });
     this.rateSub = orderService.rate$.subscribe(
       rate => {
-        if(rate) {
-          this.rate = rate;
-        }
+        this.rate = rate;
     });
   }
 
@@ -117,14 +109,15 @@ export class OrderDataComponent implements OnInit{
       let cost = 0; 
       if(this.duration && this.rate) {
         const price = Number(this.rate.price);
-        if(this.rate.rateTypeId.unit.indexOf('30')>-1) {
-          cost = Math.ceil(this.duration.minutes/60/24/30)*price;
+        const unit = parseInt(this.rate.rateTypeId.unit);
+        if(unit>0) {
+          cost = Math.ceil(this.duration.minutes/60/24/unit)*price;
         } else if (this.rate.rateTypeId.unit.indexOf('час')>-1) {
           cost = Math.ceil(this.duration.minutes/60)*price;
         } else if (this.rate.rateTypeId.unit.indexOf('мин')>-1) {
           cost = this.duration.minutes*price;
         } else {
-          const cost = Math.ceil(this.duration.minutes/60/24)*price;
+          cost = Math.ceil(this.duration.minutes/60/24)*price;
         }
       }
     
@@ -141,19 +134,24 @@ export class OrderDataComponent implements OnInit{
       let fullPrice = null; 
       if(cost && cost > 0 && (cost + servicePrice) < this.carModel.priceMax && (cost + servicePrice) > this.carModel.priceMin) {
         fullPrice = cost + servicePrice;
+      } else if(cost && cost > 0 && (cost + servicePrice) == Number(this.carModel.priceMax)) {
+        fullPrice = cost + servicePrice;
+      } else if(cost && cost > 0 && (cost + servicePrice) == Number(this.carModel.priceMin)) {
+        fullPrice = cost + servicePrice;
       } else if(cost && cost > 0 && (cost + servicePrice) > this.carModel.priceMax) {
         fullPrice = this.carModel.priceMax;
       } else if(cost && cost > 0 && cost > 0 && (cost + servicePrice) < this.carModel.priceMin) {
         fullPrice = this.carModel.priceMin;
       } 
-      if(fullPrice) {
-        this.orderService.getCost(fullPrice);
-      }
-
+      
+      this.orderService.getCost(fullPrice);
+      
       return fullPrice;
        
-    } else return null;
-    
+    } else {
+        this.orderService.getCost(null);
+        return null;
+    }
   }
 
   ngOnDestroy(): void {
