@@ -1,0 +1,35 @@
+{
+  "fields": {
+      "price": {
+          "required": true,
+          "type": "number",
+          "name": "price"
+      },
+      "rateTypeId": {
+          "ref": "5e25cd55099b810b946c5d74",
+          "populate": {
+              "filter": "",
+              "select": [
+                  "name",
+                  "unit"
+              ]
+          },
+          "type": "referer",
+          "name": "rateTypeId"
+      }
+  },
+  "count": 0,
+  "data": [
+    {
+      "updatedAt": 1638387044296,
+      "createdAt": 1628759200560,
+      "price": 30000,
+      "rateTypeId": {
+        "unit": "30 дней",
+        "name": "Месячный",
+        "id": "6114e4182aed9a0b9b850843"
+      },
+      "id": "6114e4a02aed9a0b9b850848"
+    }
+  ]
+}
