@@ -144,7 +144,7 @@ export class HttpService {
   confirmOrder(order: Order): Observable<Order>{
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey).set('Content-Type', 'application/json');
     
-    return this.http.post<Order>('http://localhost:4200/api/db/order/' + order.id, order, {headers: apiHeaders})
+    return this.http.put<Order>('http://localhost:4200/api/db/order/' + order.id, order, {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
     }))
