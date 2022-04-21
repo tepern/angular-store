@@ -6,16 +6,16 @@
     <div class="container">
       <ul class="order-nav-list">
         <li class="order-nav__item">
-          <a class="order-nav__link" [ngClass]="{active: tab == 'location', available: 'point'}" (click)="tabs('location')">Местоположение</a>
+          <button class="order-nav__link" [ngClass]="{active: tab == 'location', full: point}" (click)="tabs('location')" [disabled]="!point">Местоположение</button>
         </li>
         <li class="order-nav__item">
-          <a class="order-nav__link" [ngClass]="{active: tab == 'model', available: 'point'}" (click)="tabs('model')">Модель</a>
+          <button class="order-nav__link" [ngClass]="{active: tab == 'model', full: point}" (click)="tabs('model')" [disabled]="!point">Модель</button>
         </li>
         <li class="order-nav__item">
-          <a class="order-nav__link" [ngClass]="{active: tab == 'comment'}" (click)="tabs('comment')">Дополнительно</a>
+          <button class="order-nav__link" [ngClass]="{active: tab == 'comment', full: modelId}" (click)="tabs('comment')" [disabled]="!modelId">Дополнительно</button>
         </li>
         <li class="order-nav__item">
-          <a class="order-nav__link" [ngClass]="{active: tab == 'total'}" (click)="tabs('total')">Итого</a>
+          <button class="order-nav__link" [ngClass]="{active: tab == 'total', full: cost}" (click)="tabs('total')" [disabled]="!cost">Итого</button>
         </li>
       </ul>
     </div>

@@ -37,11 +37,6 @@ export class PopupService {
       this.applicationRef.detachView(popupComponentRef.hostView);
     });
 
-    /*popupComponentRef.instance.confirm.subscribe(() => {
-      document.body.removeChild(popup);
-      this.applicationRef.detachView(popupComponentRef.hostView);
-    });*/
-
     // Add to the DOM
     document.body.appendChild(popup);
   }

@@ -14,10 +14,27 @@ import { Subscription } from 'rxjs';
 export class OrderComponent implements OnInit {
   tab: string = 'location';
   point: string | null = null;
-  modelId: string = '';
+  modelId: string | null = null;
+  cost: number | bigint | null = null;
+  subscription: Subscription;
+  modelIdSub: Subscription;
+  costSub: Subscription;
 
   constructor(private orderService: OrderService) {
-    
+     this.subscription = orderService.point$.subscribe(
+      point => {
+        this.point = point;
+    });
+    this.modelIdSub = orderService.modelId$.subscribe(
+      id => {
+        if(id) {
+          this.modelId = id;
+        }
+    });
+    this.costSub = orderService.cost$.subscribe(
+      cost => {
+        this.cost = cost;
+    });
   }
 
   ngOnInit(): void {
@@ -25,6 +42,12 @@ export class OrderComponent implements OnInit {
 
   tabs(tab: string): void {
     this.tab = tab;
+  }
+
+  ngOnDestroy(): void {
+    this.modelIdSub.unsubscribe();
+    this.subscription.unsubscribe();
+    this.costSub.unsubscribe();
   }
 
 }

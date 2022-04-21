@@ -24,12 +24,40 @@ export class DetailsComponent {
   rate: Rate | null = null;
   services: CarService[] = [];
   modelIdSub: Subscription;
+  colorSub: Subscription;
+  startDateSub: Subscription;
+  endDateSub: Subscription;
+  rateSub: Subscription;
 
   constructor(public httpService: HttpService, private orderService: OrderService) {
     this.modelIdSub = orderService.modelName$.subscribe(
       carModel => {
         if(carModel) {
           this.carModel = carModel;
+        }
+    });
+    this.colorSub = orderService.color$.subscribe(
+      color => {
+        if(color) {
+          this.carColor = color;
+        }
+    });
+    this.startDateSub = orderService.start$.subscribe(
+      start => {
+        if(start) {
+          this.startDate = start;
+        }
+    });
+    this.endDateSub = orderService.end$.subscribe(
+      end => {
+        if(end) {
+          this.endDate = end;
+        }
+    });
+    this.rateSub = orderService.rate$.subscribe(
+      rate => {
+        if(rate) {
+          this.rate = rate;
         }
     });
   }
@@ -45,28 +73,36 @@ export class DetailsComponent {
     this.orderService.getColor(event);
   }
 
-  getStartDate(event: Date) {
+  getStartDate(event: Date | null) {
     this.startDate = event;
     this.orderService.getStartDate(event);
+    this.orderService.getCost(null);
   }
 
-  getEndDate(event: Date) {
+  getEndDate(event: Date | null) {
     this.endDate = event;
     this.orderService.getEndDate(event);
+    this.orderService.getCost(null);
   }
 
   getRate(event: Rate) {
     this.rate = event;
     this.orderService.getRate(event);
+    this.orderService.getCost(null);
   }
 
   getService(event: CarService[]) {
     this.services = event;
     this.orderService.getService(event);
+    this.orderService.getCost(null);
   }
 
   ngOnDestroy(): void {
     this.modelIdSub.unsubscribe();
+    this.colorSub.unsubscribe();
+    this.startDateSub.unsubscribe();
+    this.endDateSub.unsubscribe();
+    this.rateSub.unsubscribe();
   }
 
 }

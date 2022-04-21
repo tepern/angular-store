@@ -40,7 +40,7 @@
       </div> 
     </div>  
     <div *ngIf="carModel && modelId.length>0; else carPoints">  
-      <p class="strong mb-32" *ngIf="cost && cost !== 0; else car">Цена: {{ cost | cost }} ₽</p>
+      <p class="strong mb-32" *ngIf="cost; else car">Цена: {{ cost | cost }} ₽</p>
       <ng-template #car>
         <p class="strong mb-32">Цена: от {{ carModel.priceMin | cost }} до {{ carModel.priceMax | cost }} ₽</p>
       </ng-template>

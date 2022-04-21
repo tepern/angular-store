@@ -64,9 +64,11 @@
       line-height: 16px;
       font-weight: bold;
       color: $gray;
+      border: none;
+      background: transparent;
 
       &.active {
-        color: $green;
+        color: $green !important;
       }
 
       &.full {

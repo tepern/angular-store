@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Rate } from './rate';
 import { HttpService } from "../../http.service";
+import { OrderService } from "../../order.service";
 
 @Component({
   selector: 'app-rate',
@@ -14,13 +15,23 @@ export class RateComponent implements OnInit {
   currentRate: Rate | null = null;
   rates: Rate[] = [];
   subscription: Subscription = new Subscription();
+  rateSub: Subscription = new Subscription();
 
-  constructor(public httpService: HttpService) {}
+  constructor(public httpService: HttpService, private orderService: OrderService) {
+    
+  }
 
   ngOnInit(): void {
 
     this.subscription = this.httpService.getRates().subscribe((data: Rate[]) => {
       this.rates = data;
+    });
+
+    this.rateSub = this.orderService.rate$.subscribe(
+      rate => {
+        if(rate) {
+          this.carRate = rate.id;
+        }
     });
   }
 
@@ -42,6 +53,7 @@ export class RateComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.rateSub.unsubscribe();
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModel} from '@angular/forms';
 import { NgForm } from "@angular/forms";
+import { Subscription } from 'rxjs';
 import { City } from '../city';
 import { Point } from '../point';
 import { HttpService } from "../../http.service";
@@ -18,15 +19,36 @@ export class MapComponent implements OnInit {
   city: string | null = null; 
   cities: City[] = [];
   points: Point[] = [];
+  currentPoint: Point[] = [];
   public errCity: string | null = null;
   public errPoint: string | null = null;
   private objectManager: ymaps.ObjectManager | null = null;
+  subscription: Subscription;
+  citySub: Subscription;
+  pointIdSub: Subscription;
 
   constructor(
     public httpService: HttpService, 
     public yaGeocoderService: YaGeocoderService,
     private orderService: OrderService
-  ) { }
+  ) { 
+    this.subscription = orderService.point$.subscribe(
+      point => {
+        this.textSearch = point;
+    });
+    this.pointIdSub = orderService.pointId$.subscribe(
+      point => {
+        if(point) {
+          this.currentPoint.push(point);
+        }
+    });
+    this.citySub = orderService.cityId$.subscribe(
+      city => {
+        if(city) {
+          this.city = city.name;
+        }
+    });
+  }
 
   ngOnInit(): void {
     this.httpService.getCity().subscribe((data: City[]) => {
@@ -68,7 +90,6 @@ export class MapComponent implements OnInit {
     }
   }
 
-
   onPointSearch(): void {
     if(this.errPoint) {
       this.errPoint = null;
@@ -98,8 +119,8 @@ export class MapComponent implements OnInit {
   onMapReady(event: YaReadyEvent<ymaps.Map>): void {
     this.map = event.target;
     const map = event.target;
-
-    ymaps.geolocation
+    if(!this.city) {
+      ymaps.geolocation
       .get({
         provider: 'browser',
         mapStateAutoApply: true,
@@ -127,8 +148,11 @@ export class MapComponent implements OnInit {
           this.getPoints(map,closestPoints);
         }
         this.getPoints(map,this.points); 
-      }
-    );
+      });
+    } else {
+        this.getPoints(this.map, this.currentPoint);
+    }
+    
   }
 
   getPoint(city: string | null): any {
@@ -205,5 +229,10 @@ export class MapComponent implements OnInit {
       this.orderService.getPointId(pointId);
       this.orderService.getCityId(cityId[0]);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    this.citySub.unsubscribe();
   }
 }
