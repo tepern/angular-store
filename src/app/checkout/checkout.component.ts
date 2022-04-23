@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { HttpService } from "../order/http.service";
-import { OrderService } from "../order/order.service";
 import { CheckoutService } from "./checkout.service";
 import { OrderStatus, Order } from "../order/order";
 import { OrderDataComponent } from "../order/order-data/order-data.component";
@@ -17,8 +16,9 @@ export class CheckoutComponent implements OnInit {
   id: string | null = null;
   order: Order | null = null;
   private subscription: Subscription;
+  message: string | null = null;
 
-  constructor(public httpService: HttpService, private orderService: OrderService, private activateRoute: ActivatedRoute, public checkoutService: CheckoutService, private router: Router) {
+  constructor(public httpService: HttpService, private activateRoute: ActivatedRoute, private router: Router, public checkoutService: CheckoutService) {
     this.subscription = activateRoute.params.subscribe(params=>this.id=params['id']);
   }
 
@@ -45,9 +45,16 @@ export class CheckoutComponent implements OnInit {
     if(this.id) {
       this.httpService.deleteOrder(this.id)
       .subscribe(() => {
-        this.router.navigate(['/']);
+        this.message = 'Заказ номер ' + this.id + ' отменен';
+        setTimeout(() => {
+         this.router.navigate(['/']) 
+        }, 5000); 
       });
     }
+  }
+
+   ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

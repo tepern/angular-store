@@ -39,6 +39,7 @@
             <div class="form-group">
               <button class="btn form-right__btn" (click)="deleteOrder()">Отменить</button>
             </div>
+            <div class="text" *ngIf="message">{{ message }}</div>
           </div>  
         </div>
       </div>
