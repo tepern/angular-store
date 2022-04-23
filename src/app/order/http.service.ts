@@ -152,4 +152,26 @@ export class HttpService {
       catchError(this.handleError.bind(this))
     );  
   }
+
+  getOrder(id: string):Observable<Order> {
+
+    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
+
+    return this.http.get<Order>('http://localhost:4200/api/db/order/' + id, {headers: apiHeaders})
+    .pipe(map((data:any) => {
+      return data["data"];
+    }))
+    .pipe(catchError(this.handleError.bind(this)));      
+  }
+
+  deleteOrder(id: string):Observable<Order> {
+
+    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
+
+    return this.http.delete<Order>('http://localhost:4200/api/db/order/' + id, {headers: apiHeaders})
+    .pipe(map((data:any) => {
+      return data["data"];
+    }))
+    .pipe(catchError(this.handleError.bind(this)));      
+  }
 }

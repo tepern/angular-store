@@ -1,19 +1,22 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrderService } from "../order.service";
 import { HttpService } from "../http.service";
+import { CheckoutService } from "../../checkout/checkout.service";
 import { Subscription, Observable } from 'rxjs';
 import { CarModel } from "../model/model";
 import { CarService } from "../details/car-service/car-service";
+import { carAllService } from "../details/car-service/carAllservice";
 import { Rate } from '../details/rate/rate';
 import { Duration } from './duration';
 import { CostPipe } from '../cost.pipe';
+import { Order } from '../order';
 
 @Component({
   selector: 'app-order-data',
   templateUrl: './order-data.component.html',
   styleUrls: ['./order-data.component.scss']
 })
-export class OrderDataComponent implements OnInit{
+export class OrderDataComponent {
 
   subscription: Subscription;
   modelIdSub: Subscription;
@@ -23,6 +26,7 @@ export class OrderDataComponent implements OnInit{
   endDateSub: Subscription;
   rateSub: Subscription;
   serviceSub: Subscription;
+  orderSub: Subscription;
   point: string | null = null;
   modelId: string = '';
   carModel: CarModel | null = null;
@@ -31,8 +35,9 @@ export class OrderDataComponent implements OnInit{
   end: Date | null = null;
   services: CarService[] = [];
   rate: Rate | null = null;
+  order: Order | null = null;
 
-  constructor(private orderService: OrderService, public httpService: HttpService) {
+  constructor(private orderService: OrderService, public httpService: HttpService, public checkoutService: CheckoutService) {
     this.subscription = orderService.point$.subscribe(
       point => {
         this.point = point;
@@ -71,11 +76,25 @@ export class OrderDataComponent implements OnInit{
       rate => {
         this.rate = rate;
     });
-  }
-
-  ngOnInit(): void {
-    this.httpService.getCarModel(this.modelId).subscribe((data: CarModel) => {
-      this.carModel = data;
+    this.orderSub = checkoutService.order$.subscribe(
+      order => {
+        if(order) {
+          this.services = carAllService;
+          this.services[0].checked = order.isFullTank;
+          this.services[1].checked = order.isNeedChildChair
+          this.services[2].checked = order.isRightWheel
+          this.point = order.cityId.name + ', ' + order.pointId.address;
+          this.carModel = order.carId;
+          this.modelId = order.carId.id;
+          this.rate = order.rateId;
+          this.color = order.color;
+          if(order.dateFrom) {
+            this.start = new Date(order.dateFrom);
+          }
+          if(order.dateTo) {
+            this.end = new Date(order.dateTo); 
+          }
+        }
     });
   }
 
@@ -162,6 +181,7 @@ export class OrderDataComponent implements OnInit{
     this.endDateSub.unsubscribe();
     this.serviceSub.unsubscribe();
     this.rateSub.unsubscribe();
+    this.orderSub.unsubscribe();
   }
 
 }

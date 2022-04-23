@@ -1,6 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { NgModel} from '@angular/forms';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Router } from "@angular/router";
 import { Observable, Subject, Subscription } from 'rxjs';
 import { HttpService } from "../http.service";
 import { OrderService } from "../order.service";
@@ -43,7 +43,7 @@ export class TotalComponent {
   cost: number | bigint | null = null;
   order: Order | null = null;
 
-  constructor(public httpService: HttpService, private orderService: OrderService, injector: Injector, public popup: PopupService) {
+  constructor(public httpService: HttpService, private orderService: OrderService, injector: Injector, public popup: PopupService, private router: Router) {
     this.modelSub = orderService.modelName$.subscribe(
       carModel => {
         if(carModel) {
@@ -161,6 +161,7 @@ export class TotalComponent {
       .subscribe(order => {
         this.order = order;
         console.log(order);
+        this.router.navigate(['checkout/:order.id']);
       });
     }
   }
