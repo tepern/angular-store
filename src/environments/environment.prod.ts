@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiKey: '5e25c641099b810b946c5d5b',
+  apiUrl: 'https://api-factory.simbirsoft1.com/'
 };

@@ -42,13 +42,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   deleteOrder() {
-    if(this.id) {
-      this.httpService.deleteOrder(this.id)
-      .subscribe(() => {
-        this.message = 'Заказ номер ' + this.id + ' отменен';
-        setTimeout(() => {
-         this.router.navigate(['/']) 
-        }, 5000); 
+    const orderStatus = new OrderStatus("Отмененые", "5e26a1f5099b810b946c5d8c");
+    if(this.order) {
+      this.order.orderStatusId = orderStatus;
+      this.httpService.deleteOrder(this.order)
+      .subscribe(order => {
+        if(this.order) {
+          this.message = 'Заказ номер ' + this.order.id + ' отменен';
+          setTimeout(() => {
+           this.router.navigate(['/']) 
+          }, 5000);
+        } 
       });
     }
   }

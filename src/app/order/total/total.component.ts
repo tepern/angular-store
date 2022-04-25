@@ -161,7 +161,7 @@ export class TotalComponent {
       .subscribe(order => {
         this.order = order;
         console.log(order);
-        this.router.navigate(['checkout/:order.id']);
+        this.router.navigate(['checkout', this.order.id]);
       });
     }
   }
