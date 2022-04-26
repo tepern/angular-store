@@ -45,7 +45,7 @@ export class CheckoutComponent implements OnInit {
     const orderStatus = new OrderStatus("Отмененые", "5e26a1f5099b810b946c5d8c");
     if(this.order) {
       this.order.orderStatusId = orderStatus;
-      this.httpService.deleteOrder(this.order)
+      this.httpService.updateOrder(this.order)
       .subscribe(order => {
         if(this.order) {
           this.message = 'Заказ номер ' + this.order.id + ' отменен';

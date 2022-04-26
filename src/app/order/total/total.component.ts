@@ -157,7 +157,7 @@ export class TotalComponent {
       
     if(this.order) {
       this.order.orderStatusId = orderStatus;
-      this.httpService.confirmOrder(this.order)
+      this.httpService.updateOrder(this.order)
       .subscribe(order => {
         this.order = order;
         console.log(order);

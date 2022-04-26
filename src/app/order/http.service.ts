@@ -128,7 +128,7 @@ export class HttpService {
     );  
   }
 
-  confirmOrder(order: Order): Observable<Order>{
+  updateOrder(order: Order): Observable<Order>{
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey).set('Content-Type', 'application/json');
     
     return this.http.put<Order>(environment.apiUrl + 'api/db/order/' + order.id, order, {headers: apiHeaders})
@@ -145,17 +145,6 @@ export class HttpService {
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
 
     return this.http.get<Order>(environment.apiUrl + 'api/db/order/' + id, {headers: apiHeaders})
-    .pipe(map((data:any) => {
-      return data["data"];
-    }))
-    .pipe(catchError(this.handleError.bind(this)));      
-  }
-
-  deleteOrder(order: Order):Observable<Order> {
-
-    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
-
-    return this.http.put<Order>(environment.apiUrl + 'api/db/order/' + order.id, order, {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
     }))
