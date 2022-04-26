@@ -15,3 +15,9 @@ npm install
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
+
+## Города
+
+- Екатеринбург
+- Ростов-на-Дону
+- Ульяновск

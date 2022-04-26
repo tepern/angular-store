@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgModel} from '@angular/forms';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { HttpService } from "../http.service";
 import { OrderService } from "../order.service";
 import { CarModel } from "./model";

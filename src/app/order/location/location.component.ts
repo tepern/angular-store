@@ -1,6 +1,5 @@
 import { Component, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { NgModel} from '@angular/forms';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { MapComponent } from './map/map.component';
 import { OrderDataComponent } from "../order-data/order-data.component";
 import { OrderService } from "../order.service";
