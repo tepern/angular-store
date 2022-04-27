@@ -32,6 +32,7 @@ import { TotalComponent } from './order/total/total.component';
 import { OrderDataComponent } from './order/order-data/order-data.component';
 import { CostPipe } from './order/cost.pipe';
 import { PopupComponent } from './order/total/popup/popup.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const mapConfig: YaConfig = {
   apikey: '215898fb-7ea4-4f2a-97e4-e0e1f172c5c5',
@@ -62,6 +63,7 @@ const mapConfig: YaConfig = {
     OrderDataComponent,
     CostPipe,
     PopupComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

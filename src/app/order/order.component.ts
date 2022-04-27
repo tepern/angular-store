@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent {
   tab: string = 'location';
   point: string | null = null;
   modelId: string | null = null;
@@ -35,9 +35,6 @@ export class OrderComponent implements OnInit {
       cost => {
         this.cost = cost;
     });
-  }
-
-  ngOnInit(): void {
   }
 
   tabs(tab: string): void {

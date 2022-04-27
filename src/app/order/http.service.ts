@@ -25,7 +25,7 @@ export class HttpService {
 
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
 
-    return this.http.get<CarModel[]>('http://localhost:4200/api/db/car?page=' + (page-1) + '&limit=' + limit, {headers: apiHeaders})
+    return this.http.get<CarModel[]>(environment.apiUrl + 'api/db/car?page=' + (page-1) + '&limit=' + limit, {headers: apiHeaders})
     .pipe(map((data:any) => {
       const carModels = data["data"];
       if(filter && filter!="Все модели") {
@@ -57,7 +57,7 @@ export class HttpService {
 
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
 
-    return this.http.get<CarModel>('http://localhost:4200/api/db/car/' + id, {headers: apiHeaders})
+    return this.http.get<CarModel>(environment.apiUrl + 'api/db/car/' + id, {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
     }))
@@ -68,7 +68,7 @@ export class HttpService {
 
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
 
-    return this.http.get<Rate>('http://localhost:4200/api/db/rate/' + id, {headers: apiHeaders})
+    return this.http.get<Rate>(environment.apiUrl + 'api/db/rate/' + id, {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
     }))
@@ -79,7 +79,7 @@ export class HttpService {
 
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
 
-    return this.http.get<Rate[]>('http://localhost:4200/api/db/rate', {headers: apiHeaders})
+    return this.http.get<Rate[]>(environment.apiUrl + 'api/db/rate', {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
     }))
@@ -89,7 +89,7 @@ export class HttpService {
   getCity():Observable<City[]> {
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
 
-    return this.http.get<City[]>('http://localhost:4200/api/db/city', {headers: apiHeaders})
+    return this.http.get<City[]>(environment.apiUrl + 'api/db/city', {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
     }))
@@ -99,7 +99,7 @@ export class HttpService {
   getPoint():Observable<Point[]> {
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
 
-    return this.http.get<Point[]>('http://localhost:4200/api/db/point', {headers: apiHeaders})
+    return this.http.get<Point[]>(environment.apiUrl + 'api/db/point', {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
     }))
@@ -109,7 +109,7 @@ export class HttpService {
   getCarCount():Observable<number> {
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
 
-    return this.http.get<number>('http://localhost:4200/api/db/car', {headers: apiHeaders})
+    return this.http.get<number>(environment.apiUrl + 'api/db/car', {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["count"];
     }))
@@ -119,20 +119,7 @@ export class HttpService {
   submitOrder(order: Order): Observable<Order>{
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey).set('Content-Type', 'application/json');
 
-    return this.http.post<Order>('http://localhost:4200/api/db/order/', { 
-      orderStatusId: order.orderStatusId,
-      cityId: order.cityId,
-      pointId: order.pointId,
-      carId: order.carId,
-      color: order.color,
-      dateFrom: order.dateFrom,
-      dateTo: order.dateTo,
-      rateId: order.rateId,
-      price: order.price,
-      isFullTank: order.isFullTank,
-      isNeedChildChair: order.isNeedChildChair,
-      isRightWheel: order.isRightWheel
-    }, {headers: apiHeaders})
+    return this.http.post<Order>(environment.apiUrl + 'api/db/order/', order, {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
     }))
@@ -141,15 +128,26 @@ export class HttpService {
     );  
   }
 
-  confirmOrder(order: Order): Observable<Order>{
+  updateOrder(order: Order): Observable<Order>{
     const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey).set('Content-Type', 'application/json');
     
-    return this.http.put<Order>('http://localhost:4200/api/db/order/' + order.id, order, {headers: apiHeaders})
+    return this.http.put<Order>(environment.apiUrl + 'api/db/order/' + order.id, order, {headers: apiHeaders})
     .pipe(map((data:any) => {
       return data["data"];
     }))
     .pipe(
       catchError(this.handleError.bind(this))
     );  
+  }
+
+  getOrder(id: string):Observable<Order> {
+
+    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
+
+    return this.http.get<Order>(environment.apiUrl + 'api/db/order/' + id, {headers: apiHeaders})
+    .pipe(map((data:any) => {
+      return data["data"];
+    }))
+    .pipe(catchError(this.handleError.bind(this)));      
   }
 }

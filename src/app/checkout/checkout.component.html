@@ -1,0 +1,48 @@
+<div class="content">
+  <header class="header">
+    <app-header></app-header>
+  </header>
+  <div class="checkout-nav">
+    <div class="container" *ngIf="order && order.id">
+      <p>Заказ номер <span> {{ order.id }} </span></p>
+    </div>
+  </div>    
+  <div class="checkout">
+    <section class="section">
+      <div class="container checkout-container">
+        <div class="checkout-left">
+          <div class="checkout-order mb-32" *ngIf="order">
+            <div class="checkout__title">Ваш заказ подтверждён</div>
+            <div class="checkout-title" *ngIf="order.carId">{{ order.carId.name }}</div>
+            <div class="checkout__number" *ngIf="order.carId && order.carId.number">{{ order.carId.number }}</div>
+            <div *ngIf="order.isFullTank || order.isNeedChildChair || order.isRightWheel">
+              <div class="checkout__detail" *ngIf="order.isFullTank">
+                  Топливо
+                <span>100%</span>  
+              </div>
+            </div>
+            <div class="checkout__detail" *ngIf="order.isNeedChildChair"> Детское кресло - 
+              <span>да</span>
+            </div>
+            <div class="checkout__detail" *ngIf="order.isRightWheel"> Правый руль - 
+              <span>да</span>
+            </div>
+            <div class="checkout__detail">Доступна с
+              <span>{{ order.dateFrom | date:'dd.MM.yyyy hh:mm'}}</span>
+            </div>
+          </div>  
+          <div class="checkout__img" *ngIf="order && order.carId" [ngStyle]="{ 'background-image': 'url(' + order.carId.thumbnail.path + ') '}"></div>
+        </div>
+        <div class="checkout-right">
+          <app-order-data></app-order-data>
+          <div class="form form-right">
+            <div class="form-group">
+              <button class="btn form-right__btn" (click)="deleteOrder()">Отменить</button>
+            </div>
+            <div class="text" *ngIf="message">{{ message }}</div>
+          </div>  
+        </div>
+      </div>
+    </section>
+  </div>
+</div>  

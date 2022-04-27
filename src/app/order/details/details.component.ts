@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgModel} from '@angular/forms';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { HttpService } from "../http.service";
 import { OrderService } from "../order.service";
