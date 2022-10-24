@@ -1,5 +1,5 @@
-<div class="pagination" *ngIf="count > 0">
-  <button (click)="onPrev()" [disabled]="page === 1 || loading"><</button>
+<div class="pagination" *ngIf="count > perPage">
+  <button (click)="onPrev()" [disabled]="page === 1 || !loading"><</button>
   <button *ngFor="let pageNum of getPages()" (click)="onPage(pageNum)" [ngClass]="{active: pageNum == page}">{{ pageNum }}</button>
   <button (click)="onNext(true)" [disabled]="lastPage()">></button>
 </div>

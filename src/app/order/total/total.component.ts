@@ -114,7 +114,7 @@ export class TotalComponent {
   }
 
   submitOrder(): void {
-    const orderStatus = new OrderStatus("Новые","5e26a191099b810b946c5d89");
+    const orderStatus = new OrderStatus("Новые","1");
     
    if(this.city && this.point && this.carModel && this.color && this.start && this.end && this.rate && this.cost) {
       const end = new Date(this.end);
@@ -153,7 +153,7 @@ export class TotalComponent {
   }
 
   confirmOrder(): void {
-    const orderStatus = new OrderStatus("Подтвержденные","5e26a1f0099b810b946c5d8b");
+    const orderStatus = new OrderStatus("Подтвержденные","2");
       
     if(this.order) {
       this.order.orderStatusId = orderStatus;

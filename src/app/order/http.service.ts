@@ -23,9 +23,9 @@ export class HttpService {
 
   getCarsModels(page: number, limit: number, filter?: string):Observable<CarModel[]> {
 
-    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey);
+    const apiHeaders = new HttpHeaders().set('Accept', 'Application/json').set('X-Api-Factory-Application-Id', environment.apiKey);
 
-    return this.http.get<CarModel[]>(environment.apiUrl + 'api/db/car?page=' + (page-1) + '&limit=' + limit, {headers: apiHeaders})
+    return this.http.get<CarModel[]>(environment.apiUrl + 'api/db/car?page=' + page + '&limit=' + limit, {headers: apiHeaders})
     .pipe(map((data:any) => {
       const carModels = data["data"];
       if(filter && filter!="Все модели") {
@@ -117,7 +117,7 @@ export class HttpService {
   }
 
   submitOrder(order: Order): Observable<Order>{
-    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey).set('Content-Type', 'application/json');
+    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey).set('Content-Type', 'application/json').set('Authorization', 'Bearer '+environment.token).set('Accept', 'application/vnd.heroku+json; version=3');
 
     return this.http.post<Order>(environment.apiUrl + 'api/db/order/', order, {headers: apiHeaders})
     .pipe(map((data:any) => {

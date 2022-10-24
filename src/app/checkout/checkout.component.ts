@@ -42,7 +42,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   deleteOrder() {
-    const orderStatus = new OrderStatus("Отмененые", "5e26a1f5099b810b946c5d8c");
+    const orderStatus = new OrderStatus("Отмененные", "3");
     if(this.order) {
       this.order.orderStatusId = orderStatus;
       this.httpService.updateOrder(this.order)

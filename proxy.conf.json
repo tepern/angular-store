@@ -1,7 +1,7 @@
 {
   "/api": {
-    "target": "http://api-factory.simbirsoft1.com",
-    "secure": true,
-    "changeOrigin": true,
+    "target": "https://car-store-api-12.herokuapp.com/",
+    "secure": false,
+    "changeOrigin": true
   }
 }
