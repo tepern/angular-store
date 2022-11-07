@@ -22,11 +22,13 @@ export class DetailsComponent {
   endDate: Date | null = null;
   rate: Rate | null = null;
   services: CarService[] = [];
+  cost: bigint | number | null = null;
   modelIdSub: Subscription;
   colorSub: Subscription;
   startDateSub: Subscription;
   endDateSub: Subscription;
   rateSub: Subscription;
+  costSub: Subscription;
 
   constructor(public httpService: HttpService, private orderService: OrderService) {
     this.modelIdSub = orderService.modelName$.subscribe(
@@ -57,6 +59,12 @@ export class DetailsComponent {
       rate => {
         if(rate) {
           this.rate = rate;
+        }
+    });
+    this.costSub = orderService.cost$.subscribe(
+      cost => {
+        if(cost) {
+          this.cost = cost;
         }
     });
   }
@@ -102,6 +110,7 @@ export class DetailsComponent {
     this.startDateSub.unsubscribe();
     this.endDateSub.unsubscribe();
     this.rateSub.unsubscribe();
+    this.costSub.unsubscribe();
   }
 
 }
