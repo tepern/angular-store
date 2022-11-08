@@ -48,7 +48,12 @@ export class ModelComponent implements OnInit {
     if(this.carModel) {    
       const carModel = event;
       this.carModel = event;
-      this.getModels(1, 0, event);
+      if (event !== defaultCarModel[0].name) {
+        this.getModels(1, 0, event);
+      } else {
+        this.getModels(pagination.pageVar, pagination.perPageVar);
+      }
+       
     } else {
       this.getModels(pagination.pageVar, pagination.perPageVar);
     }
