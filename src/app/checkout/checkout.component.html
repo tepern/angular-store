@@ -28,7 +28,7 @@
               <span>да</span>
             </div>
             <div class="checkout__detail">Доступна с
-              <span>{{ order.dateFrom | date:'dd.MM.yyyy hh:mm'}}</span>
+              <span>{{ order.dateFrom | date:'dd.MM.yyyy HH:mm'}}</span>
             </div>
           </div>  
           <div class="checkout__img" *ngIf="order && order.carId" [ngStyle]="{ 'background-image': 'url(' + order.carId.thumbnail.path + ') '}"></div>

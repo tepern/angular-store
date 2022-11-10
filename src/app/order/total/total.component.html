@@ -18,7 +18,7 @@
             <span>да</span>
           </div>
           <div class="total__detail">Доступна с
-            <span>{{ start | date:'dd.MM.yyyy hh:mm'}}</span>
+            <span>{{ start | date:'dd.MM.yyyy HH:mm'}}</span>
           </div>
         </div>  
         <div class="total__img" *ngIf="carModel" [ngStyle]="{ 'background-image': 'url(' + carModel.thumbnail.path + ') '}"></div>
