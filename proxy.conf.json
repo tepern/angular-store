@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://car-store-api-12.herokuapp.com/",
+    "target": "http://f0746336.xsph.ru/",
     "secure": false,
     "changeOrigin": true
   }

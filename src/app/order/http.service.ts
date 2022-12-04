@@ -117,7 +117,7 @@ export class HttpService {
   }
 
   submitOrder(order: Order): Observable<Order>{
-    const apiHeaders = new HttpHeaders().set('X-Api-Factory-Application-Id', environment.apiKey).set('Content-Type', 'application/json').set('Authorization', 'Bearer '+environment.token).set('Accept', 'application/vnd.heroku+json; version=3');
+    const apiHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http.post<Order>(environment.apiUrl + 'api/db/order/', order, {headers: apiHeaders})
     .pipe(map((data:any) => {
