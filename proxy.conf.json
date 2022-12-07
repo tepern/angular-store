@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://f0746336.xsph.ru/",
+    "target": "https://car-store-api-12.onrender.com",
     "secure": false,
     "changeOrigin": true
   }
