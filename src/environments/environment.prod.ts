@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   apiKey: '5e25c641099b810b946c5d5b',
-  apiUrl: 'https://car-store-api-12.onrender.com/'
+  apiUrl: 'https://car-store-api.onrender.com/'
 };
