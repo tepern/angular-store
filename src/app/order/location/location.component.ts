@@ -3,7 +3,7 @@ import { NgModel} from '@angular/forms';
 import { MapComponent } from './map/map.component';
 import { OrderDataComponent } from "../order-data/order-data.component";
 import { OrderService } from "../order.service";
-import { Subscription, timeout } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-location',
@@ -16,7 +16,7 @@ export class LocationComponent {
   point: string | null = null;
 
   constructor(private orderService: OrderService) {
-    this.subscription = orderService.point$.pipe(timeout({ first: 7_000, each: 5_000 })).subscribe(
+    this.subscription = orderService.point$.subscribe(
       point => {
         this.point = point;
     });
